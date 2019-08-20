@@ -1,0 +1,50 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="register-content">
+
+      <!-- Logo -->
+      <div padding-horizontal text-center class="animated fadeInDown">
+        <div class="logo"></div>
+        <h2 ion-text class="text-primary">
+          <strong> Registro de nuevos usuarios</strong>
+        </h2>
+      </div>
+
+      <!-- Login form -->
+      <form class="list-form">
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="contact" item-start class="text-primary"></ion-icon>
+            Ingrese su nombre completo
+          </ion-label>
+          <ion-input type="text" required [(ngModel)]="name"  [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="mail" item-start class="text-primary"></ion-icon>
+            Ingrese su mail:
+          </ion-label>
+          <ion-input type="email" required [(ngModel)]="email"  [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>
+            <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+            Elija una contraseña
+          </ion-label>
+          <ion-input type="password" required [(ngModel)]="password"  [ngModelOptions]="{standalone: true}"></ion-input>
+        </ion-item>
+        <div>
+          <button ion-button icon-start block color="dark" tappable (click)="register()" [disabled]="validateRegForm()">
+            <ion-icon name="log-in"></ion-icon>
+            REGISTRARME
+          </button>
+        </div>
+      </form>
+
+
+      <div text-center margin-top>
+        <span ion-text color="secondary" tappable (click)="goToLogin()">Volver al <strong> login </strong></span>
+      </div>
+  </div>
+</ion-content>

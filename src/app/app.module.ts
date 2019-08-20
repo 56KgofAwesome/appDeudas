@@ -6,25 +6,43 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-
+//Páginas del login
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { SettingsPage } from '../pages/settings/settings';
+//Import del Provider de la API
+import { ApiTestProvider } from '../providers/api-test/api-test';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule} from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    //Agregamos Login en Declaraions
+    LoginPage,
+    RegisterPage,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    //Agregamos el Login en entryCoponents
+    LoginPage,
+    SettingsPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiTestProvider
   ]
 })
 export class AppModule {}
