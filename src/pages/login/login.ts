@@ -6,6 +6,8 @@ import { ApiTestProvider } from '../../providers/api-test/api-test';
 //Imports necesarios
 import { Http, Response, RequestOptions,Headers } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+//Libreria para las alertas
+import { AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,7 +21,7 @@ export class LoginPage {
   disabled: any;
   response: any;
   options: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public apiTestProvider: ApiTestProvider,public http: Http) {
+  constructor(public navCtrl: NavController,public navParams: NavParams, public apiTestProvider: ApiTestProvider,public http: Http,public alertCtrl: AlertController) {
     this.validateForm();
 
   }
@@ -38,19 +40,40 @@ export class LoginPage {
     //post(url,body,headers)
     this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userLogin'+'&username='+this.mail+'&password='+this.password,this.options)
       .subscribe(data => {
-        console.log(data.status);
+        //Guardamos el status de la conexión y respuesta con los datos que enviamos
+        var respuesta = data.json();
+        console.log(respuesta.status);
+        //Validamos que el status y la respuesta
+        if(respuesta.status=='200'){
+          this.goToHome();
+        }else{
+          //una alerta de que no existe el usuario
+          this.incorrectAlert();
+        }
       });
 
 
   }
-
+  //Función que manda al Home si todo se validó bien
+  goToHome(){
+    this.navCtrl.push(HomePage);
+  };
   //Ir a la página de registro
   goToFormRegister(){
     this.navCtrl.push(RegisterPage);
   }
-
+  //Función del botón de Login
   goToMain(){
     this.validateUser();
+  }
+  //Alerta de usuario incorrecto
+  incorrectAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Error :( ',
+      subTitle: 'Nombre de usuario o contraseña incorrectos',
+      buttons: ['Aceptar']
+    });
+    alert.present();
   }
   //Validamos el formulario del login
   validateForm(){

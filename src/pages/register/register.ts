@@ -35,7 +35,7 @@ export class RegisterPage {
   //Validar el formulario
   validateRegForm(){
     if(this.name == '' || this.password == '' || this.email ==''){
-      return this.disabled=true;
+      return this.disabled==true;
     }else{
       return this.disabled==false;
     }
