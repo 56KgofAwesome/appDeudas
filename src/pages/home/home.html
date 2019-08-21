@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Bienvenido
+      Bienvenido {{ id_user }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,5 +10,20 @@
   <div class="searchbar">
     <ion-searchbar></ion-searchbar>
   </div>
-
-  </ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Concepto
+      </ion-col>
+      <ion-col>
+        Total
+      </ion-col>
+      <ion-col>
+        Fecha
+      </ion-col>
+      <ion-col>
+        ...
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

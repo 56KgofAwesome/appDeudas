@@ -17,6 +17,7 @@ import { HttpModule} from '@angular/http';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPage } from '../pages/add/add';
 import { ProfilePage } from '../pages/profile/profile';
+
 @NgModule({
   declarations: [
     MyApp,

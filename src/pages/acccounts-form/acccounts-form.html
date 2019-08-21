@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Crear una cuenta nueva</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="closeModal()"> Cancelar </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="formAccount">
+    <ion-item>
+      <ion-label floating><ion-icon name="book" item-start class="text-primary"></ion-icon>
+      Concepto
+      </ion-label>
+      <ion-input [(ngModel)]="concept"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+        Total de la compra
+      </ion-label>
+      <ion-input [(ngModel)]="totalAccount"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+    </ion-item>
+    <!--ion-item>
+      <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
+        Pago Dividido
+      </ion-label>
+      <ion-toggle color="primary" unchecked [(ngModel)]="true"></ion-toggle>
+    </ion-item-->
+    <ion-item>
+      <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
+        Participantes
+      </ion-label>
+      <ion-select multiple="true" okText="Listo" cancelText="Cancelar">
+        <ion-option>Fulanito</ion-option>
+        <ion-option>Cosme Fulanito</ion-option>
+        <ion-option> Dude </ion-option>
+        <ion-option> Este vato </ion-option>
+      </ion-select>
+    </ion-item>
+    <button ion-button class="buttonAccountForm">
+      Crear
+    </button>
+  </div>
+</ion-content>
