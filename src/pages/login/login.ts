@@ -23,7 +23,6 @@ export class LoginPage {
   options: any;
   constructor(public navCtrl: NavController,public navParams: NavParams, public apiTestProvider: ApiTestProvider,public http: Http,public alertCtrl: AlertController) {
     this.validateForm();
-
   }
 
   //Función para conectar con el servidor al momento de hacer login
@@ -51,9 +50,7 @@ export class LoginPage {
           this.incorrectAlert();
         }
       });
-
-
-  }
+    }
   //Función que manda al Home si todo se validó bien
   goToHome(){
     this.navCtrl.push(HomePage);
