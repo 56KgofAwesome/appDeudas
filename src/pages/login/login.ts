@@ -3,9 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
-import { TabsPage } from '../tabs/tabs';
+//import { TabsPage } from '../tabs/tabs';
 //Imports necesarios
-import { Http,RequestOptions,Headers } from '@angular/http';
+import { Http } from '@angular/http';
 //import { HttpClient } from '@angular/common/http';
 //Libreria para las alertas
 import { AlertController } from 'ionic-angular';
@@ -17,7 +17,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class LoginPage {
 
-  mail: string = "";
+  username: string = "";
   password: string = "";
   disabled: any;
   response: any;
@@ -27,18 +27,18 @@ export class LoginPage {
   }
 
   //Función para conectar con el servidor al momento de hacer login
-  validateUser(){
+  /*validateUser(){
     //Construimos los encabezados de la comunicación
     var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
     this.options = new RequestOptions({ headers: headers });
     //Construimos el body del mensaje
     let body = {
-      mail: this.mail,
+      username: this.username,
       password: this.password
     };
     //Enviamos la petición
     //post(url,body,headers)
-    this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userLogin'+'&username='+this.mail+'&password='+this.password,this.options)
+    this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userLogin'+'&username='+this.username+'&password='+this.password,this.options)
       .subscribe(data => {
         //Guardamos el status de la conexión y respuesta con los datos que enviamos
         var respuesta = data.json();
@@ -51,18 +51,17 @@ export class LoginPage {
           this.incorrectAlert();
         }
       });
-    }
+    }*/
   //Función que manda al Home si todo se validó bien
-  goToHome(){
-    this.navCtrl.push(TabsPage);
-  };
+  //goToHome(){};
   //Ir a la página de registro
   goToFormRegister(){
     this.navCtrl.push(RegisterPage);
   }
   //Función del botón de Login
   goToMain(){
-    this.validateUser();
+    this.apiTestProvider.validateUser('m=userLogin'+'&username='+this.username+'&password='+this.password);
+    this.navCtrl.push('TabsPage');
   }
   //Alerta de usuario incorrecto
   incorrectAlert() {
@@ -75,7 +74,7 @@ export class LoginPage {
   }
   //Validamos el formulario del login
   validateForm(){
-    if( this.mail == '' || this.password == ''){
+    if( this.username == '' || this.password == ''){
       return this.disabled = true;
     }else{
       return this.disabled = false;

@@ -26,7 +26,6 @@ import { ProfilePage } from '../pages/profile/profile';
     LoginPage,
     RegisterPage,
     SettingsPage,
-    TabsPage,
     AddPage,
     ProfilePage
   ],
@@ -44,7 +43,6 @@ import { ProfilePage } from '../pages/profile/profile';
     LoginPage,
     SettingsPage,
     RegisterPage,
-    TabsPage,
     AddPage,
     ProfilePage
   ],

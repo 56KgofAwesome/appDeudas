@@ -17,10 +17,6 @@ export class AcccountsFormPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AcccountsFormPage');
-  }
   //Funcion para cerrar el modal
   closeModal(){
     this.view.dismiss();
