@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+//import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
-import { ApiTestProvider } from '../../providers/api-test/api-test';
-import { Http, Response, RequestOptions,Headers} from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+//import { ApiTestProvider } from '../../providers/api-test/api-test';
+import { Http,RequestOptions,Headers} from '@angular/http';
+//import { HttpClient } from '@angular/common/http';
 import { AlertController } from 'ionic-angular';
 
 /**
@@ -25,6 +25,7 @@ export class RegisterPage {
   email: string = "";
   password: string = "";
   options: any;
+  disabled: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public alertCtrl: AlertController) {
     this.validateRegForm();
   }
@@ -34,7 +35,7 @@ export class RegisterPage {
   }
   //Validar el formulario
   validateRegForm(){
-    if(this.name == '' || this.password == '' || this.email ==''){
+    if(this.username == '' || this.password == '' || this.email ==''){
       return this.disabled=true;
     }else{
       return this.disabled=false;

@@ -14,6 +14,9 @@ import { SettingsPage } from '../pages/settings/settings';
 import { ApiTestProvider } from '../providers/api-test/api-test';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule} from '@angular/http';
+import { TabsPage } from '../pages/tabs/tabs';
+import { AddPage } from '../pages/add/add';
+import { ProfilePage } from '../pages/profile/profile';
 @NgModule({
   declarations: [
     MyApp,
@@ -21,7 +24,10 @@ import { HttpModule} from '@angular/http';
     //Agregamos Login en Declaraions
     LoginPage,
     RegisterPage,
-    SettingsPage
+    SettingsPage,
+    TabsPage,
+    AddPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +42,10 @@ import { HttpModule} from '@angular/http';
     //Agregamos el Login en entryCoponents
     LoginPage,
     SettingsPage,
-    RegisterPage
+    RegisterPage,
+    TabsPage,
+    AddPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

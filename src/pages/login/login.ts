@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+//import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
+import { TabsPage } from '../tabs/tabs';
 //Imports necesarios
-import { Http, Response, RequestOptions,Headers } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { Http,RequestOptions,Headers } from '@angular/http';
+//import { HttpClient } from '@angular/common/http';
 //Libreria para las alertas
 import { AlertController } from 'ionic-angular';
 
@@ -53,7 +54,7 @@ export class LoginPage {
     }
   //Función que manda al Home si todo se validó bien
   goToHome(){
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(TabsPage);
   };
   //Ir a la página de registro
   goToFormRegister(){
