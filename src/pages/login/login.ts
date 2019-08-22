@@ -33,14 +33,15 @@ export class LoginPage {
   }
   //Función del botón de Login
   goToMain(){
-
     this.success = this.apiTestProvider.validateUser('m=userLogin'+'&username='+this.username+'&password='+this.password);
     //Va a esperar todas las promesas
     Promise.all([
       this.success
     ]).then(data=>{
         var statusOk =  data[0].status;
+        //var userId =  data[0].data.userid;
         console.log(statusOk);
+        //console.log(userId);
         if (statusOk == '200') {
           this.navCtrl.push('TabsPage');
         }else{

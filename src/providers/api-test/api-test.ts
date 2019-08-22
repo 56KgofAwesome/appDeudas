@@ -4,13 +4,17 @@ import { Http,RequestOptions,Headers } from '@angular/http';
 
 @Injectable()
 export class ApiTestProvider {
+  url: 'http://www.immosystem.com.mx/immo_practicas/immoApp.php';
+  //Variables para construir el Login
   username: string = "";
   password: string = "";
-  disabled: any;
   response: any;
   options: any;
-  url: 'http://www.immosystem.com.mx/immo_practicas/immoApp.php';
-
+  userId: any;
+  //Variables para construir el Añadir contacto
+  statusAddNew: any;
+  //Variables del form
+  disabled: any;
   constructor(public httpClient: HttpClient,public http: Http) { }
 
   //Funcipón que valida conexió para loguearte
@@ -29,9 +33,28 @@ export class ApiTestProvider {
           var respuesta = data.json();
           //la función resolve devuelve a la variable 'respuesta'
           resolve(respuesta);
+            this.userId = respuesta.data.userid;
+            console.log(this.userId);
         });
 
     })
 
     }
+  //Función que agrega a mi lista de contactos
+  addContact(usernameToAdd){
+    return new Promise((resolve)=>{
+      var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
+      this.options = new RequestOptions({ headers: headers });
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=usernewContact'+'&c_userid='+this.userId+'&c_name='+usernameToAdd,this.options)
+        .subscribe(data => {
+          //Guardamos el status de la conexión y respuesta con los datos que enviamos
+          var respuestaContacto = data.json();
+          //console.log(respuestaContacto.status);//imprime 200 si se pudo agregar con éxito
+          resolve(respuestaContacto);
+            this.statusAddNew = respuestaContacto.status;
+            //console.log(this.statusAddNew);//200
+
+        });
+  })
+}
 }
