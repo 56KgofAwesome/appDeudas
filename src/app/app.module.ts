@@ -17,6 +17,7 @@ import { HttpModule} from '@angular/http';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPage } from '../pages/add/add';
 import { ProfilePage } from '../pages/profile/profile';
+import { AcccountsFormPage } from '../pages/acccounts-form/acccounts-form';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ProfilePage } from '../pages/profile/profile';
     SettingsPage,
     RegisterPage,
     AddPage,
-    ProfilePage
+    ProfilePage,
+
   ],
   providers: [
     StatusBar,

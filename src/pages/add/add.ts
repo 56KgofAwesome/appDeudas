@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
-//import { AcccountsFormPage } from '../acccounts-form/acccounts-form';
+import { AcccountsFormPage } from '../acccounts-form/acccounts-form';
 
 /**
  * Generated class for the AddPage page.

@@ -11,8 +11,11 @@ export class ApiTestProvider {
   response: any;
   options: any;
   userId: any;
+  userName: any;
   //Variables para construir el Añadir contacto
   statusAddNew: any;
+  //Variables contactos
+  contactsList: any;
   //Variables del form
   disabled: any;
   constructor(public httpClient: HttpClient,public http: Http) { }
@@ -34,6 +37,7 @@ export class ApiTestProvider {
           //la función resolve devuelve a la variable 'respuesta'
           resolve(respuesta);
             this.userId = respuesta.data.userid;
+            this.userName = respuesta.data.username;
             console.log(this.userId);
         });
 
@@ -57,4 +61,17 @@ export class ApiTestProvider {
         });
   })
 }
+  //Función para obtener los contactos del usuario
+  getContactList(){
+    return new Promise((resolve)=>{
+      var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
+      this.options = new RequestOptions({ headers: headers });
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userContact'+'&c_userid='+this.userId,this.options)
+        .subscribe(data => {
+          var respuestaContactList = data.json();
+          resolve(respuestaContactList.data);
+          this.contactsList = respuestaContactList;
+        });
+    })
+  }
 }

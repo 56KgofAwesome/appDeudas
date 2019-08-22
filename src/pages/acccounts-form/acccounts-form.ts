@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-
+import { ApiTestProvider } from '../../providers/api-test/api-test';
+import { ProfilePage } from '../profile/profile';
 /**
  * Generated class for the AcccountsFormPage page.
  *
@@ -15,7 +16,11 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class AcccountsFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
+  public selectContacts:any = [];
+
+  constructor(public apiTestProvider: ApiTestProvider,  navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
+    this.selectContacts = this.apiTestProvider.contactsList.data;
+    console.log(this.selectContacts);
   }
   //Funcion para cerrar el modal
   closeModal(){

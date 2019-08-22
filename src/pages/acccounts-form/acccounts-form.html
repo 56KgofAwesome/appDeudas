@@ -32,10 +32,9 @@
         Participantes
       </ion-label>
       <ion-select multiple="true" okText="Listo" cancelText="Cancelar">
-        <ion-option>Fulanito</ion-option>
-        <ion-option>Cosme Fulanito</ion-option>
-        <ion-option> Dude </ion-option>
-        <ion-option> Este vato </ion-option>
+        <ion-option *ngFor="let contact of selectContacts" name="contactos" value="contact.id">
+          {{ contact.c_name }}
+        </ion-option>
       </ion-select>
     </ion-item>
     <button ion-button class="buttonAccountForm">
