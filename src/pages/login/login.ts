@@ -22,46 +22,31 @@ export class LoginPage {
   disabled: any;
   response: any;
   options: any;
+  success: any;
   constructor(public navCtrl: NavController,public navParams: NavParams, public apiTestProvider: ApiTestProvider,public http: Http,public alertCtrl: AlertController) {
     this.validateForm();
   }
 
-  //Función para conectar con el servidor al momento de hacer login
-  /*validateUser(){
-    //Construimos los encabezados de la comunicación
-    var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
-    this.options = new RequestOptions({ headers: headers });
-    //Construimos el body del mensaje
-    let body = {
-      username: this.username,
-      password: this.password
-    };
-    //Enviamos la petición
-    //post(url,body,headers)
-    this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userLogin'+'&username='+this.username+'&password='+this.password,this.options)
-      .subscribe(data => {
-        //Guardamos el status de la conexión y respuesta con los datos que enviamos
-        var respuesta = data.json();
-        console.log(respuesta.status);
-        //Validamos que el status y la respuesta
-        if(respuesta.status=='200'){
-          this.goToHome();
-        }else{
-          //una alerta de que no existe el usuario
-          this.incorrectAlert();
-        }
-      });
-    }*/
-  //Función que manda al Home si todo se validó bien
-  //goToHome(){};
   //Ir a la página de registro
   goToFormRegister(){
     this.navCtrl.push(RegisterPage);
   }
   //Función del botón de Login
   goToMain(){
-    this.apiTestProvider.validateUser('m=userLogin'+'&username='+this.username+'&password='+this.password);
-    this.navCtrl.push('TabsPage');
+
+    this.success = this.apiTestProvider.validateUser('m=userLogin'+'&username='+this.username+'&password='+this.password);
+    //Va a esperar todas las promesas
+    Promise.all([
+      this.success
+    ]).then(data=>{
+        var statusOk =  data[0].status;
+        console.log(statusOk);
+        if (statusOk == '200') {
+          this.navCtrl.push('TabsPage');
+        }else{
+          this.incorrectAlert();
+        }
+    })
   }
   //Alerta de usuario incorrecto
   incorrectAlert() {
@@ -80,5 +65,4 @@ export class LoginPage {
       return this.disabled = false;
     }
   }
-
 }
