@@ -8,21 +8,22 @@ import { ApiTestProvider } from '../../providers/api-test/api-test';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  successAccountsList: any;
-
-
+  myUserName: any;
+  successToListAcc: any;
+  public allAccounts: [];
 
   constructor(public navCtrl: NavController, public apiTestProvider: ApiTestProvider) {
-
+    this.show();
+    //console.log(this.allAccounts);
   }
-  showAccountsList(){
+  show(){
+    this.successToListAcc = this.apiTestProvider.getAccountsList();
     Promise.all([
-      this.successAccountsList
+      this.successToListAcc
     ]).then(data=>{
-        var statusOk =  data[0].status;
-        //var userId =  data[0].data.userid;
-        console.log(statusOk);
+      this.allAccounts = this.apiTestProvider.accountsList;
+      //console.log(this.allAccounts);
+      //console.log(data[0]);
     })
   }
 

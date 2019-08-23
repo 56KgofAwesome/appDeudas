@@ -13,13 +13,13 @@
       <ion-label floating><ion-icon name="book" item-start class="text-primary"></ion-icon>
       Concepto
       </ion-label>
-      <ion-input [(ngModel)]="concept"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+      <ion-input [(ngModel)]="conceptForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
         Total de la compra
       </ion-label>
-      <ion-input [(ngModel)]="totalAccount"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+      <ion-input [(ngModel)]="totalAccountForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
     </ion-item>
     <!--ion-item>
       <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
@@ -31,13 +31,13 @@
       <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
         Participantes
       </ion-label>
-      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participants">
-        <ion-option *ngFor="let contact of selectContacts" name="contact.c_name" value="{{contact.c_userid}}">
-          {{ contact.c_name }}
+      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participantsForm">
+        <ion-option *ngFor="let contact of selectContacts" name="contact.c_name" value="{{ contact.c_contactid }}">
+          {{ contact.c_name }} {{contact.c_contactid }}
         </ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button class="buttonAccountForm" (click)="test()">
+    <button ion-button class="buttonAccountForm" (click)="newAccount()">
       Crear
     </button>
   </div>

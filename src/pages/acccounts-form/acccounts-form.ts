@@ -17,24 +17,34 @@ import { AlertController } from 'ionic-angular';
 })
 export class AcccountsFormPage {
   //Variabes del formulario account
-  concept: any;
-  totalAccount: any;
-  participants: any;
-
+  conceptForm: any;
+  totalAccountForm: any;
+  participantsForm: any;
+  succesToAddAccount: any;
   public selectContacts:any = [];
 
-  constructor(public alertCtrl: AlertController,public apiTestProvider: ApiTestProvider,  navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
+  constructor(public alertCtrl: AlertController,public apiTestProvider: ApiTestProvider,navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
     this.selectContacts = this.apiTestProvider.contactsList;
     console.log(this.selectContacts);
   }
 
   //TEST FORM ACCOUNT
-  test(){
-    console.log(this.concept);
-    console.log(this.totalAccount);
-    console.log(this.participants);
+  newAccount(){
+    this.succesToAddAccount = this.apiTestProvider.createAccount(this.conceptForm,this.totalAccountForm,this.participantsForm);
+    Promise.all([
+        this.succesToAddAccount
+    ]).then(data=>{
+      //console.log(data[0].status);
+      var statusOkAddAccount =  data[0].status;
+      console.log(statusOkAddAccount);
+      if(statusOkAddAccount == '200'){
+        this.successToAddAccountAlert();
+      }else{
+        this.failedToAddAccountAlert();
+      }
+    })
   }
-  
+
   //Alerta de nueva compra exitosa
   successToAddAccountAlert() {
     let alert = this.alertCtrl.create({

@@ -16,11 +16,15 @@ export class ApiTestProvider {
   statusAddNew: any;
   //Variables contactos
   contactsList: any;
-  //Variables para crear nueva cuenta
+  //Variables para listar
   accountsList: any;
   concept: any;
   total: any;
   participants: any;
+  //Variables para crear cuenta
+  newAccount: any
+  participantsString: any;
+  statusAddNewAccount: any;
   //Variables del form
   disabled: any;
   constructor(public httpClient: HttpClient,public http: Http) {
@@ -78,7 +82,7 @@ export class ApiTestProvider {
           var respuestaContactList = data.json();
           resolve(respuestaContactList);
           this.contactsList = respuestaContactList.data;
-          console.log(this.contactsList);
+          //console.log(this.contactsList);
         });
     })
   }
@@ -87,12 +91,34 @@ export class ApiTestProvider {
       return new Promise((resolve)=>{
           var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept': 'application/json'});
           this.options = new RequestOptions({headers: headers});
-          this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'m_name='+this.concept+'m_pay='+this.total+'m_party='+this.participants+'m_userid='+this.userId,this.options)
+          this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userMovementShare'+'&m_userid='+this.userId,this.options)
           .subscribe(data=>{
-              var respuestaAccountsList = data.json();
-              resolve(respuestaAccountsList);
-              this.accountsList = respuestaAccountsList;
+            var respuestaAccountList = data.json();
+            resolve(respuestaAccountList);
+            this.accountsList = respuestaAccountList.data;
+            console.log(this.accountsList);
+            var balance = this.accountsList[0].m_payPlus;
+            console.log(balance);
           })
       })
+  }
+  //Funcion para crear compra
+  createAccount(conceptForm,totalAccountForm,participantsForm){
+    //Convertimos el array de participantes a String
+    this.participantsString = participantsForm.toString();
+    return new Promise((resolve)=>{
+      var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
+      this.options = new RequestOptions({ headers: headers });
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&m_name='+conceptForm+'&m_pay='+totalAccountForm+'&m_party='+this.participantsString+'&m_userid='+this.userId,this.options)
+        .subscribe(data => {
+          //Guardamos el status de la conexión y respuesta con los datos que enviamos
+          var newAccountResponse = data.json();
+          console.log(newAccountResponse.status);
+          resolve(newAccountResponse);
+
+        });
+  })
+
+
   }
 }

@@ -1,29 +1,58 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Bienvenido {{ user_id }}
+      Todas tus cuentas {{ myUserName }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div class="searchbar">
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar  placeholder="Buscar con quién comparto cuentas"></ion-searchbar>
   </div>
   <ion-grid>
     <ion-row>
       <ion-col>
         Concepto
+          <ion-row>
+            <ion-list>
+              <ion-item *ngFor="let account of allAccounts">
+                {{account.m_name}}
+              </ion-item>
+            </ion-list>
+          </ion-row>
       </ion-col>
       <ion-col>
         Total
+          <ion-row>
+            <ion-list>
+              <ion-item *ngFor="let account of allAccounts">
+                {{account.m_payPlus}}
+              </ion-item>
+            </ion-list>
+          </ion-row>
       </ion-col>
       <ion-col>
         Fecha
+          <ion-row>
+            <ion-list>
+              <ion-item *ngFor="let account of allAccounts">
+                {{account.m_date}}
+              </ion-item>
+            </ion-list>
+          </ion-row>
       </ion-col>
       <ion-col>
-        ...
+          ...
+        <ion-row>
+          <ion-list>
+            <ion-item *ngFor="let account of allAccounts">
+            <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-row>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>
