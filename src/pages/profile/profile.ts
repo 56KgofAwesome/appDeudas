@@ -29,7 +29,7 @@ export class ProfilePage {
     Promise.all([
       this.successContactList
     ]).then(data=>{
-      var contactsOk = data[0];
+      var contactsOk = data;
       this.userContacts = contactsOk;
       //console.log(this.userContacts);
     })

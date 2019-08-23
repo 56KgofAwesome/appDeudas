@@ -31,13 +31,13 @@
       <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
         Participantes
       </ion-label>
-      <ion-select multiple="true" okText="Listo" cancelText="Cancelar">
-        <ion-option *ngFor="let contact of selectContacts" name="contactos" value="contact.id">
+      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participants">
+        <ion-option *ngFor="let contact of selectContacts" name="contact.c_name" value="{{contact.c_userid}}">
           {{ contact.c_name }}
         </ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button class="buttonAccountForm">
+    <button ion-button class="buttonAccountForm" (click)="test()">
       Crear
     </button>
   </div>

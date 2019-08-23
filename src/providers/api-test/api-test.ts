@@ -16,9 +16,16 @@ export class ApiTestProvider {
   statusAddNew: any;
   //Variables contactos
   contactsList: any;
+  //Variables para crear nueva cuenta
+  accountsList: any;
+  concept: any;
+  total: any;
+  participants: any;
   //Variables del form
   disabled: any;
-  constructor(public httpClient: HttpClient,public http: Http) { }
+  constructor(public httpClient: HttpClient,public http: Http) {
+
+   }
 
   //Funcipón que valida conexió para loguearte
   validateUser(body){
@@ -56,7 +63,7 @@ export class ApiTestProvider {
           //console.log(respuestaContacto.status);//imprime 200 si se pudo agregar con éxito
           resolve(respuestaContacto);
             this.statusAddNew = respuestaContacto.status;
-            //console.log(this.statusAddNew);//200
+            console.log(this.statusAddNew);//200
 
         });
   })
@@ -69,9 +76,23 @@ export class ApiTestProvider {
       this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userContact'+'&c_userid='+this.userId,this.options)
         .subscribe(data => {
           var respuestaContactList = data.json();
-          resolve(respuestaContactList.data);
-          this.contactsList = respuestaContactList;
+          resolve(respuestaContactList);
+          this.contactsList = respuestaContactList.data;
+          console.log(this.contactsList);
         });
     })
+  }
+  //Función para obtener todas las compras del usuario
+  getAccountsList(){
+      return new Promise((resolve)=>{
+          var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept': 'application/json'});
+          this.options = new RequestOptions({headers: headers});
+          this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'m_name='+this.concept+'m_pay='+this.total+'m_party='+this.participants+'m_userid='+this.userId,this.options)
+          .subscribe(data=>{
+              var respuestaAccountsList = data.json();
+              resolve(respuestaAccountsList);
+              this.accountsList = respuestaAccountsList;
+          })
+      })
   }
 }
