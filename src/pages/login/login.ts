@@ -17,12 +17,13 @@ import { AlertController } from 'ionic-angular';
 })
 export class LoginPage {
 
-  username: string = "";
-  password: string = "";
-  disabled: any;
+  username: any;
+  password: any;
+  disabled: any;//Control del formulario
+  //
   response: any;
   options: any;
-  success: any;
+  loginData: any;
   constructor(public navCtrl: NavController,public navParams: NavParams, public apiTestProvider: ApiTestProvider,public http: Http,public alertCtrl: AlertController) {
     this.validateForm();
   }
@@ -32,17 +33,18 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
   //Función del botón de Login
-  goToMain(){
-    this.success = this.apiTestProvider.validateUser('m=userLogin'+'&username='+this.username+'&password='+this.password);
+  logIn(){
+    console.log(this.username);//Nombre de usuario que viene del formulario
+    console.log(this.password);//Password que viene del formulario
+    this.loginData = this.apiTestProvider.validateUser('m=userLogin'+'&username='+this.username+'&password='+this.password);
     //Va a esperar todas las promesas
     Promise.all([
-      this.success
+      this.loginData
     ]).then(data=>{
         var statusOk =  data[0].status;
         //var userId =  data[0].data.userid;
-        console.log(statusOk);
-        //console.log(userId);
         if (statusOk == '200') {
+          this.username = this.apiTestProvider.userName;
           this.navCtrl.push('TabsPage');
         }else{
           this.incorrectAlert();

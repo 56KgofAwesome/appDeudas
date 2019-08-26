@@ -6,12 +6,14 @@ import { Http,RequestOptions,Headers } from '@angular/http';
 export class ApiTestProvider {
   url: 'http://www.immosystem.com.mx/immo_practicas/immoApp.php';
   //Variables para construir el Login
-  username: string = "";
-  password: string = "";
+  username: any;
+  password: any;
   response: any;
   options: any;
   userId: any;
   userName: any;
+  userEmail: any;
+  statusLogin: any;
   //Variables para construir el Añadir contacto
   statusAddNew: any;
   //Variables contactos
@@ -31,7 +33,7 @@ export class ApiTestProvider {
 
    }
 
-  //Funcipón que valida conexió para loguearte
+  //Función que valida conexió para loguearte
   validateUser(body){
     //La función validateUser espera una promesa
     return new Promise((resolve)=>{
@@ -40,16 +42,25 @@ export class ApiTestProvider {
       this.options = new RequestOptions({ headers: headers });
       //Enviamos la petición
       //post(url,body,headers)
-      //La variable 'a' va a recibir todo lo que ejecute el .post
       this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php',body,this.options)
         .subscribe(data => {
-          //Guardamos el status de la conexión y respuesta con los datos que enviamos
-          var respuesta = data.json();
-          //la función resolve devuelve a la variable 'respuesta'
-          resolve(respuesta);
-            this.userId = respuesta.data.userid;
-            this.userName = respuesta.data.username;
-            console.log(this.userId);
+          //Recibimos los datos en formato
+          var respuestaLogin = data.json();
+          //la función resolve devuelve a la variable 'respuestaLogin'
+          this.statusLogin = respuestaLogin.status;
+            if(this.statusLogin == 100){
+              console.log('Respuesta de Login: '+this.statusLogin);
+              resolve(respuestaLogin);
+            }else{
+              console.log('Respuesta de Login: '+this.statusLogin);
+              this.userId = respuestaLogin.data.userid;
+              console.log('User id: '+this.userId);
+              this.userName = respuestaLogin.data.username;
+              console.log('Username: '+this.userName);
+              this.userEmail = respuestaLogin.data.email;
+              console.log('Email: '+this.userEmail);
+              resolve(respuestaLogin);
+            }
         });
 
     })
@@ -82,7 +93,6 @@ export class ApiTestProvider {
           var respuestaContactList = data.json();
           resolve(respuestaContactList);
           this.contactsList = respuestaContactList.data;
-          //console.log(this.contactsList);
         });
     })
   }
@@ -91,7 +101,7 @@ export class ApiTestProvider {
       return new Promise((resolve)=>{
           var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept': 'application/json'});
           this.options = new RequestOptions({headers: headers});
-          this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userMovementShare'+'&m_userid='+this.userId,this.options)
+          this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userMovement'+'&m_userid='+this.userId,this.options)
           .subscribe(data=>{
             var respuestaAccountList = data.json();
             resolve(respuestaAccountList);
@@ -102,10 +112,10 @@ export class ApiTestProvider {
           })
       })
   }
-  //Funcion para crear compra
+  //---------------------------------Funcion para crear compra con divisón automática
   createAccount(conceptForm,totalAccountForm,participantsForm){
     //Convertimos el array de participantes a String
-    this.participantsString = participantsForm.toString();
+    //this.participantsString = participantsForm.toString();
     return new Promise((resolve)=>{
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });

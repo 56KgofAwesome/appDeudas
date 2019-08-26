@@ -22,13 +22,33 @@ export class AcccountsFormPage {
   participantsForm: any;
   succesToAddAccount: any;
   public selectContacts:any = [];
-
+  //Control del formulario
+  hidden: any;
+  manualDivision: any;
+  public arrayParticipants: any = []
   constructor(public alertCtrl: AlertController,public apiTestProvider: ApiTestProvider,navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
     this.selectContacts = this.apiTestProvider.contactsList;
+    this.automaticDivisionView();
     console.log(this.selectContacts);
   }
+  check(){
+    this.selectContacts.forEach(function(contact){
+      var arrayParticipants = [contact.c_contactid];
+      console.log(arrayParticipants);
+    })
+      console.log(this.arrayParticipants);
+    //Recorrer el arreglo de Participants form y buscar los id que aparezcan en select Contacts
+    //ASi estarán igualados y se almacenara en un tercer arreglo que recorreremos para pintar la division manual
 
-  //TEST FORM ACCOUNT
+  }
+  //Muestra la opción de división manual de la cuenta
+  automaticDivisionView(){
+    if(this.manualDivision==true){
+      return this.hidden=true;
+    }else{
+      return this.hidden=false;
+    }
+  }
   newAccount(){
     this.succesToAddAccount = this.apiTestProvider.createAccount(this.conceptForm,this.totalAccountForm,this.participantsForm);
     Promise.all([
@@ -44,7 +64,6 @@ export class AcccountsFormPage {
       }
     })
   }
-
   //Alerta de nueva compra exitosa
   successToAddAccountAlert() {
     let alert = this.alertCtrl.create({

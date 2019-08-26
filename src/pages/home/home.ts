@@ -10,7 +10,7 @@ import { ApiTestProvider } from '../../providers/api-test/api-test';
 export class HomePage {
   myUserName: any;
   successToListAcc: any;
-  public allAccounts: [];
+public allAccounts: any;
 
   constructor(public navCtrl: NavController, public apiTestProvider: ApiTestProvider) {
     this.show();

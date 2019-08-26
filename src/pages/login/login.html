@@ -28,7 +28,7 @@
         <ion-input type="password" required [(ngModel)]="password" [ngModelOptions]="{standalone: true}" ></ion-input>
       </ion-item>
       <div>
-        <button ion-button icon-start block color="dark" tappable [disabled]="validateForm()" (click)="goToMain()">
+        <button ion-button icon-start block color="dark" tappable [disabled]="validateForm()" (click)="logIn()">
           <ion-icon name="log-in"></ion-icon>
           SIGN IN
         </button>

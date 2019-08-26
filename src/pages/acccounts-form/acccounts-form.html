@@ -21,23 +21,33 @@
       </ion-label>
       <ion-input [(ngModel)]="totalAccountForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
     </ion-item>
-    <!--ion-item>
-      <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
-        Pago Dividido
-      </ion-label>
-      <ion-toggle color="primary" unchecked [(ngModel)]="true"></ion-toggle>
-    </ion-item-->
     <ion-item>
       <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
         Participantes
       </ion-label>
-      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participantsForm">
-        <ion-option *ngFor="let contact of selectContacts" name="contact.c_name" value="{{ contact.c_contactid }}">
-          {{ contact.c_name }} {{contact.c_contactid }}
+      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participantsForm" (ionChange)="check()">
+        <ion-option *ngFor="let contact of selectContacts" name="contact" value="{{ contact.c_contactid }}">
+          {{contact.c_name }}
         </ion-option>
       </ion-select>
     </ion-item>
-    <button ion-button class="buttonAccountForm" (click)="newAccount()">
+    <ion-item>
+      <ion-label> División automatica: </ion-label>
+        <ion-toggle [(ngModel)]="manualDivision"></ion-toggle>
+    </ion-item>
+    <!--División manual de los montos de pago-->
+    <ion-list [hidden]="automaticDivisionView()">
+      <ion-item *ngFor="let participant of participantsForm" >
+        <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+          {{ participant}}
+        </ion-label>
+        <ion-input> </ion-input>
+      </ion-item>
+    </ion-list>
+    <!--button ion-button class="buttonAccountForm" (click)="newAccount()">
+      Crear
+    </button-->
+    <button ion-button class="buttonAccountForm">
       Crear
     </button>
   </div>
