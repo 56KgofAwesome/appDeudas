@@ -17,7 +17,8 @@ import { HttpModule} from '@angular/http';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPage } from '../pages/add/add';
 import { ProfilePage } from '../pages/profile/profile';
-import { AcccountsFormPage } from '../pages/acccounts-form/acccounts-form';
+import { ContactsPage } from '../pages/contacts/contacts';
+import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AcccountsFormPage } from '../pages/acccounts-form/acccounts-form';
     RegisterPage,
     SettingsPage,
     AddPage,
-    ProfilePage
+    ProfilePage,
+    ContactsPage
   ],
   imports: [
     BrowserModule,
@@ -46,13 +48,15 @@ import { AcccountsFormPage } from '../pages/acccounts-form/acccounts-form';
     RegisterPage,
     AddPage,
     ProfilePage,
+    ContactsPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiTestProvider
+    ApiTestProvider,
+    ContactsApiProvider
   ]
 })
 export class AppModule {}

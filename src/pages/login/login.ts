@@ -17,7 +17,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class LoginPage {
 
-  username: any;
+  userEmail: any;
   password: any;
   disabled: any;//Control del formulario
   //
@@ -34,9 +34,9 @@ export class LoginPage {
   }
   //Función del botón de Login
   logIn(){
-    console.log(this.username);//Nombre de usuario que viene del formulario
+    console.log(this.userEmail);//Nombre de usuario que viene del formulario
     console.log(this.password);//Password que viene del formulario
-    this.loginData = this.apiTestProvider.validateUser('m=userLogin'+'&email='+this.username+'&password='+this.password);
+    this.loginData = this.apiTestProvider.validateUser('m=userLogin'+'&email='+this.userEmail+'&password='+this.password);
     //Va a esperar todas las promesas
     Promise.all([
       this.loginData
@@ -44,7 +44,7 @@ export class LoginPage {
         var statusOk =  data[0].status;
         //var userId =  data[0].data.userid;
         if (statusOk == '200') {
-          this.username = this.apiTestProvider.userName;
+          this.userEmail = this.apiTestProvider.userEmail;
           this.navCtrl.push('TabsPage');
         }else{
           this.incorrectAlert();
@@ -62,7 +62,7 @@ export class LoginPage {
   }
   //Validamos el formulario del login
   validateForm(){
-    if( this.username == '' || this.password == ''){
+    if( this.userEmail == '' || this.password == ''){
       return this.disabled = true;
     }else{
       return this.disabled = false;
