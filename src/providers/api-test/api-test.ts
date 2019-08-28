@@ -84,7 +84,7 @@ export class ApiTestProvider {
   })
 }
   //Función para obtener los contactos del usuario
-  getContactList(){
+  /*getContactList(){
     return new Promise((resolve)=>{
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
@@ -95,7 +95,7 @@ export class ApiTestProvider {
           this.contactsList = respuestaContactList.data;
         });
     })
-  }
+  }*/
   //Función para obtener todas las compras del usuario
   getAccountsList(){
       return new Promise((resolve)=>{

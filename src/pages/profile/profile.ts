@@ -20,21 +20,6 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public apiTestProvider: ApiTestProvider) {
 
     this.myUserName = apiTestProvider.userName;
-    this.contactos();
   }
-
-  contactos(){
-    this.successContactList = this.apiTestProvider.getContactList();
-    //console.log(this.userContacts);
-    Promise.all([
-      this.successContactList
-    ]).then(data=>{
-      var contactsOk = data;
-      this.userContacts = contactsOk;
-      //console.log(this.userContacts);
-    })
-  }
-
-
 
 }

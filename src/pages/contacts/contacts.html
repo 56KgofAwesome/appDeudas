@@ -1,20 +1,51 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Tus Contactos </ion-title>
+    <ion-title> Amigos </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h2> Nombre </h2>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-list>
-    <ion-item *ngFor="let request of requestList">
-        {{ request.c_username }}
-    </ion-item>
-  </ion-list>
+  <div>
+    <ion-segment [(ngModel)]="selectedSegment">
+      <ion-segment-button value="contactos">
+        <ion-label>Contactos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="solicitudes">
+        <ion-label>
+           Solicitudes
+          <ion-badge color="danger"> {{ notificationRequests }} </ion-badge>
+        </ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="selectedSegment">
+    <!--Muestra la pestaña de Contactos-->
+    <div *ngSwitchCase="'contactos'">
+      <ion-list>
+        <ion-item *ngFor="let contact of contactsList">
+          <ion-col> {{ contact.c_name }} </ion-col>
+        </ion-item>
+      </ion-list>
+    </div>
+    <!--Muestra la pestaña de solicitudes-->
+    <div *ngSwitchCase="'solicitudes'">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h2> Nombre </h2>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-list>
+        <ion-item *ngFor="let request of requestList">
+          <ion-col> {{ request.c_username }} </ion-col>
+          <ion-col>
+            <button ion-button value="acceptRequest" (click)="accept(request.c_id)">Aceptar</button>
+            <button ion-button (click)="reject(request.c_id)" >Rechazar</button>
+          </ion-col>
+        </ion-item>
+
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

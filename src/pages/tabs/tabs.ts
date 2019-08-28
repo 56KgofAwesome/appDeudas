@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ContactsPage } from '../contacts/contacts';
 import { ProfilePage } from '../profile/profile';
+import { ContactsApiProvider } from '../../providers/contacts-api/contacts-api';
 
 /**
  * Generated class for the TabsPage page.
@@ -22,7 +23,7 @@ export class TabsPage {
   tabContacts = ContactsPage;
   tabProfile = ProfilePage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public contactsAPI: ContactsApiProvider) {
   }
 
 
