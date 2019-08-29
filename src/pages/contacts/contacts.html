@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title> Amigos </ion-title>
+    <ion-title> Contactos </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addContactForm()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,13 +24,19 @@
     </ion-segment>
   </div>
   <div [ngSwitch]="selectedSegment">
-    <!--Muestra la pestaña de Contactos-->
+    <!---------------------------------Muestra la pestaña de Contactos----------------------------------->
     <div *ngSwitchCase="'contactos'">
-      <ion-list>
-        <ion-item *ngFor="let contact of contactsList">
-          <ion-col> {{ contact.c_name }} </ion-col>
-        </ion-item>
-      </ion-list>
+      <ion-grid>
+        <ion-row>
+            <h4> Nombre de usuario </h4>
+        </ion-row>
+        <ion-list>
+          <ion-item *ngFor="let contact of contactsList">
+            <ion-icon name="contact"></ion-icon>
+            <ion-col> {{ contact.c_name }} </ion-col>
+          </ion-item>
+        </ion-list>
+      </ion-grid>
     </div>
     <!--Muestra la pestaña de solicitudes-->
     <div *ngSwitchCase="'solicitudes'">
@@ -44,7 +55,6 @@
             <button ion-button (click)="reject(request.c_id)" >Rechazar</button>
           </ion-col>
         </ion-item>
-
       </ion-list>
     </div>
   </div>

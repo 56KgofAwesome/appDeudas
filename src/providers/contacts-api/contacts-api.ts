@@ -10,6 +10,8 @@ export class ContactsApiProvider {
   requestsListData: any;
   requestList: any[];
   contactsList: any;
+  statusAnswerRequest: any;
+  statusRequest: any;
   constructor(public httpClient: HttpClient,public http: Http,public aTP: ApiTestProvider ) {
   }
   //Obtener la lista de contactos del usuario
@@ -43,7 +45,17 @@ export class ContactsApiProvider {
   }
   //---------------------------------------------------------------------------------------------------
   //Enviar solicitud de contacto
-  sendContactRequest(){
+  sendContactRequest(usernameToAdd){
+    return new Promise((resolve)=>{
+        var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept': 'application/json'});
+        this.options = new RequestOptions({headers: headers});
+        this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userRequest'+'&userid='+this.aTP.userId+'&username='+usernameToAdd,this.options)
+          .subscribe(data =>{
+            var answerContactRequest = data.json();
+            this.statusRequest = answerContactRequest.status;//200,100
+            resolve(answerContactRequest);
+          })
+    })
   }
   //-----------------------------------------------------------------------------------------------------
   //Enviar respuesta de solicitud
@@ -53,7 +65,10 @@ export class ContactsApiProvider {
       this.options = new RequestOptions({ headers: headers });
       this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userAnswer'+'&c_id='+requestID+'&c_answer='+answerRequest,this.options)
         .subscribe(data => {
-        resolve();
+          var answerRequest = data.json();
+          this.statusAnswerRequest = answerRequest.status;
+          //console.log(this.statusRequest); Output: 200,100
+          resolve(this.statusAnswerRequest);
         });
     })
   }
