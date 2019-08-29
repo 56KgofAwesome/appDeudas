@@ -56,11 +56,14 @@ export class ContactsPage {
     Promise.all([
       this.acceptRequest = this.contactsAPI.sendRequestAnswer(answerRequest,requestID)
     ]).then(data=>{
-          if(this.contactsAPI.statusRequest == '200'){
+          if(this.contactsAPI.statusAnswerRequest == 200){
             this.showRequests();
             this.showContactsList();
           }else{
             this.errorAlert();
+            this.showRequests();
+            this.showContactsList();
+            console.log('Accept');
           }
     })
   }
@@ -71,11 +74,14 @@ export class ContactsPage {
     Promise.all([
       this.acceptRequest = this.contactsAPI.sendRequestAnswer(answerRequest,requestID)
     ]).then(data=>{
-      if(this.contactsAPI.statusRequest == '200'){
+      if(this.contactsAPI.statusAnswerRequest == 200){
         this.showRequests();
         this.showContactsList();
       }else{
+        console.log("rejeect");
         this.errorAlert();
+        this.showRequests();
+        this.showContactsList();
       }
     })
   }
