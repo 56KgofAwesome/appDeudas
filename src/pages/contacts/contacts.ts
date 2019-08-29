@@ -26,10 +26,13 @@ export class ContactsPage {
   requestID: any;
   usernameToAdd: any;
   successToSend: any;
+
+  hidden: any;//Control de la notificación
   constructor(public navCtrl: NavController, public navParams: NavParams,public apiTestProvider: ApiTestProvider,public contactsAPI: ContactsApiProvider,public http: Http,public alertCtrl: AlertController) {
     this.showRequests();
     this.showContactsList();
   }
+  //------------------------------------------------------------------------------------------------------
   //Mostrar las solicitudes pendientes
   showRequests(){
     Promise.all([
@@ -63,7 +66,6 @@ export class ContactsPage {
             this.errorAlert();
             this.showRequests();
             this.showContactsList();
-            console.log('Accept');
           }
     })
   }
@@ -78,7 +80,6 @@ export class ContactsPage {
         this.showRequests();
         this.showContactsList();
       }else{
-        console.log("rejeect");
         this.errorAlert();
         this.showRequests();
         this.showContactsList();

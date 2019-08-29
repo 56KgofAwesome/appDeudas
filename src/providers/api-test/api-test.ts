@@ -33,7 +33,7 @@ export class ApiTestProvider {
 
    }
 
-  //Función que valida conexió para loguearte
+  //Función que valida conexión para loguearte
   validateUser(body){
     //La función validateUser espera una promesa
     return new Promise((resolve)=>{
@@ -66,6 +66,7 @@ export class ApiTestProvider {
     })
 
     }
+  //---------------------------------------------------------------------------------------------------------------------
   //Función que agrega a mi lista de contactos
   addContact(usernameToAdd){
     return new Promise((resolve)=>{
@@ -83,37 +84,9 @@ export class ApiTestProvider {
         });
   })
 }
-  //Función para obtener los contactos del usuario
-  /*getContactList(){
-    return new Promise((resolve)=>{
-      var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
-      this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userContact'+'&c_userid='+this.userId,this.options)
-        .subscribe(data => {
-          var respuestaContactList = data.json();
-          resolve(respuestaContactList);
-          this.contactsList = respuestaContactList.data;
-        });
-    })
-  }*/
-  //Función para obtener todas las compras del usuario
-  getAccountsList(){
-      return new Promise((resolve)=>{
-          var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept': 'application/json'});
-          this.options = new RequestOptions({headers: headers});
-          this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userMovement'+'&m_userid='+this.userId,this.options)
-          .subscribe(data=>{
-            var respuestaAccountList = data.json();
-            resolve(respuestaAccountList);
-            this.accountsList = respuestaAccountList.data;
-            console.log(this.accountsList);
-            var balance = this.accountsList[0].m_payPlus;
-            console.log(balance);
-          })
-      })
-  }
-  //---------------------------------Funcion para crear compra con divisón automática
-  createAccount(conceptForm,totalAccountForm,participantsForm){
+  //---------------------------------------------------------------------------------------------------------------------
+  //Funcion para crear compra con divisón automática
+  /*createAccount(conceptForm,totalAccountForm,participantsForm){
     //Convertimos el array de participantes a String
     //this.participantsString = participantsForm.toString();
     return new Promise((resolve)=>{
@@ -128,7 +101,5 @@ export class ApiTestProvider {
 
         });
   })
-
-
-  }
+  }*/
 }

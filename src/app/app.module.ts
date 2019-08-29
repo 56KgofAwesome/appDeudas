@@ -19,6 +19,7 @@ import { AddPage } from '../pages/add/add';
 import { ProfilePage } from '../pages/profile/profile';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
+import { AccountsApiProvider } from '../providers/accounts-api/accounts-api';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiTestProvider,
-    ContactsApiProvider
+    ContactsApiProvider,
+    AccountsApiProvider
   ]
 })
 export class AppModule {}
