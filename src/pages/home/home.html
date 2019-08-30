@@ -1,58 +1,104 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Todas tus cuentas {{ myUserName }}
+      Todas tus cuentas {{ username }}
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addAccountForm()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div class="searchbar">
-    <ion-searchbar  placeholder="Buscar con quién comparto cuentas"></ion-searchbar>
-  </div>
-  <ion-grid>
+  <!--Listado de todas las compras en las que participa el usuario-->
+    <ion-row class="tituloCompras">
+      <h2>Tus compras</h2>
+    </ion-row>
     <ion-row>
       <ion-col>
-        Concepto
+        <strong> Concepto </strong>
+          <ion-list>
+            <ion-item *ngFor="let account of allMyBuys">
+              {{account.p_name}}
+            </ion-item>
+          </ion-list>
+      </ion-col>
+      <ion-col>
+        <strong> Total </strong>
           <ion-row>
             <ion-list>
-              <ion-item *ngFor="let account of allAccounts">
-                {{account.m_name}}
+              <ion-item *ngFor="let account of allMyBuys">
+                ${{account.p_payuser}} MXN
               </ion-item>
             </ion-list>
           </ion-row>
       </ion-col>
       <ion-col>
-        Total
+        <strong> Fecha </strong>
           <ion-row>
             <ion-list>
-              <ion-item *ngFor="let account of allAccounts">
-                {{account.m_payPlus}}
+              <ion-item *ngFor="let account of allMyBuys">
+                {{ account.p_date.substring(0,10) }}
               </ion-item>
             </ion-list>
           </ion-row>
       </ion-col>
       <ion-col>
-        Fecha
-          <ion-row>
-            <ion-list>
-              <ion-item *ngFor="let account of allAccounts">
-                {{account.m_date}}
-              </ion-item>
-            </ion-list>
-          </ion-row>
-      </ion-col>
-      <ion-col>
-          ...
+          <strong> ... </strong>
         <ion-row>
           <ion-list>
-            <ion-item *ngFor="let account of allAccounts">
+            <ion-item *ngFor="let account of allMyBuys">
             <ion-icon name="arrow-forward"></ion-icon>
             </ion-item>
           </ion-list>
         </ion-row>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  <!--Litado de todas las deudas del usuario-->
+    <ion-row class="tituloDeudas">
+      <h2>Tus Deudas</h2>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <strong> Concepto </strong>
+          <ion-list>
+            <ion-item *ngFor="let account of allMyDebts">
+              {{account.p_name}}
+            </ion-item>
+          </ion-list>
+      </ion-col>
+      <ion-col>
+        <strong> Total </strong>
+          <ion-row>
+            <ion-list>
+              <ion-item *ngFor="let account of allMyDebts">
+                ${{account.p_payuser}} MXN
+              </ion-item>
+            </ion-list>
+          </ion-row>
+      </ion-col>
+      <ion-col>
+        <strong> Fecha </strong>
+          <ion-row>
+            <ion-list>
+              <ion-item *ngFor="let account of allMyDebts">
+                {{ account.p_date.substring(0,10) }}
+              </ion-item>
+            </ion-list>
+          </ion-row>
+      </ion-col>
+      <ion-col>
+          <strong> ... </strong>
+        <ion-row>
+          <ion-list>
+            <ion-item *ngFor="let account of allMyDebts">
+            <ion-icon name="arrow-forward"></ion-icon>
+            </ion-item>
+          </ion-list>
+        </ion-row>
+      </ion-col>
+    </ion-row>
 
 </ion-content>

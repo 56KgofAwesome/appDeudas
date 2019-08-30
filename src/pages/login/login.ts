@@ -34,8 +34,8 @@ export class LoginPage {
   }
   //Función del botón de Login
   logIn(){
-    console.log(this.userEmail);//Nombre de usuario que viene del formulario
-    console.log(this.password);//Password que viene del formulario
+    //console.log(this.userEmail);//Nombre de usuario que viene del formulario
+    //console.log(this.password);//Password que viene del formulario
     this.loginData = this.apiTestProvider.validateUser('m=userLogin'+'&email='+this.userEmail+'&password='+this.password);
     //Va a esperar todas las promesas
     Promise.all([

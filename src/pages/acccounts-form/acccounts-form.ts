@@ -50,7 +50,7 @@ export class AcccountsFormPage {
     }
   }
   newAccount(){
-    this.succesToAddAccount = this.apiTestProvider.createAccount(this.conceptForm,this.totalAccountForm,this.participantsForm);
+    //this.succesToAddAccount = this.apiTestProvider.createAccount(this.conceptForm,this.totalAccountForm,this.participantsForm);
     Promise.all([
         this.succesToAddAccount
     ]).then(data=>{

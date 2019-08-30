@@ -52,13 +52,13 @@ export class ApiTestProvider {
               console.log('Respuesta de Login: '+this.statusLogin);
               resolve(respuestaLogin);
             }else{
-              console.log('Respuesta de Login: '+this.statusLogin);
+              //console.log('Respuesta de Login: '+this.statusLogin);
               this.userId = respuestaLogin.data.userid;
-              console.log('User id: '+this.userId);
+              //console.log('User id: '+this.userId);
               this.userName = respuestaLogin.data.username;
-              console.log('Username: '+this.userName);
+              //console.log('Username: '+this.userName);
               this.userEmail = respuestaLogin.data.email;
-              console.log('Email: '+this.userEmail);
+              //console.log('Email: '+this.userEmail);
               resolve(respuestaLogin);
             }
         });

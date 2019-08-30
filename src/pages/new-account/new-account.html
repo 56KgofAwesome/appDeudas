@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Crear una cuenta nueva</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="closeModal()"> Cancelar </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="formAccount">
+    <ion-item>
+      <ion-label floating><ion-icon name="book" item-start class="text-primary"></ion-icon>
+      Concepto
+      </ion-label>
+      <ion-input [(ngModel)]="conceptForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+        Total de la compra
+      </ion-label>
+      <ion-input [(ngModel)]="totalAccountForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
+        Participantes
+      </ion-label>
+      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participantsForm">
+        <ion-option *ngFor="let contact of chooseContacts" name="contact" value="{{ contact.c_contactid }}">
+          {{contact.c_name }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label> Division automática: </ion-label>
+        <ion-toggle [(ngModel)]="manualDivision"></ion-toggle>
+    </ion-item>
+    <!--División manual de los montos de pago-->
+    <ion-list [hidden]="automaticDivisionView()">
+      <ion-item>
+        <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+          Mi pago:
+        </ion-label>
+        <ion-input [(ngModel)]="myPay"></ion-input>
+      </ion-item>
+      <ion-item *ngFor="let participant of participantsForm" >
+        <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+          {{ participant}}
+        </ion-label>
+        <ion-input [(ngModel)]="payPart"> </ion-input>
+      </ion-item>
+    </ion-list>
+    <!--button ion-button class="buttonAccountForm" (click)="newAccount()">
+      Crear
+    </button-->
+    <button ion-button class="buttonAccountForm" (click)="sendFormAccount()" [disabled]="checkAmount()">
+      Crear
+    </button>
+  </div>
+</ion-content>

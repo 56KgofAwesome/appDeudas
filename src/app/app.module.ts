@@ -20,6 +20,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
 import { AccountsApiProvider } from '../providers/accounts-api/accounts-api';
+import { NewAccountPage } from '../pages/new-account/new-account';
 
 @NgModule({
   declarations: [

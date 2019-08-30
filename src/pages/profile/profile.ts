@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
 
 @IonicPage()
 @Component({
@@ -17,9 +12,23 @@ export class ProfilePage {
   myUserName: any;
   userContacts: any;
   successContactList: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public apiTestProvider: ApiTestProvider) {
-
+  public globalUserBalance: any;
+  succesToGetBalance: any;
+  globalBalance: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public apiTestProvider: ApiTestProvider,public accountsAPI: AccountsApiProvider) {
     this.myUserName = apiTestProvider.userName;
+    this.showBalance();
   }
+  //--------------------------------------------------------------------------------------------
+  //Muestra el balance general del usuario
+  showBalance(){
+    Promise.all([
+      this.succesToGetBalance = this.accountsAPI.getBalance()
+    ]).then(data=>{
+        this.globalBalance = this.accountsAPI.globalUserBalance;
+        //console.log(this.globalBalance);
+    })
+  }
+  //--------------------------------------------------------------------------------------------
 
 }
