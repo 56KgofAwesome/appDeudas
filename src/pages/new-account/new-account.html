@@ -25,7 +25,7 @@
       <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
         Participantes
       </ion-label>
-      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participantsForm">
+      <ion-select multiple="true" okText="Listo" cancelText="Cancelar" [(ngModel)]="participantsForm" (ionChange)="updateOption(participantsForm)">
         <ion-option *ngFor="let contact of chooseContacts" name="contact" value="{{ contact.c_contactid }}">
           {{contact.c_name }}
         </ion-option>
@@ -43,11 +43,11 @@
         </ion-label>
         <ion-input [(ngModel)]="myPay"></ion-input>
       </ion-item>
-      <ion-item *ngFor="let participant of participantsForm" >
+      <ion-item *ngFor="let participant of finalfinal">
         <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
-          {{ participant}}
+          {{ participant.id }}
         </ion-label>
-        <ion-input [(ngModel)]="payPart"> </ion-input>
+        <ion-input [(ngModel)]="participant.cantidad" (ionChange)="llenado(participant.id,participant.cantidad)"> </ion-input>
       </ion-item>
     </ion-list>
     <!--button ion-button class="buttonAccountForm" (click)="newAccount()">

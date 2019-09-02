@@ -17,7 +17,7 @@
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input [(ngModel)]="userEmail"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+        <ion-input [(ngModel)]="userEmail"  [ngModelOptions]="{standalone: true}" type="text" value="user1@user1"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,7 +25,7 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Password
         </ion-label>
-        <ion-input type="password" required [(ngModel)]="password" [ngModelOptions]="{standalone: true}" ></ion-input>
+        <ion-input type="password" required [(ngModel)]="password" [ngModelOptions]="{standalone: true}" value="contraseña1"></ion-input>
       </ion-item>
       <div>
         <button ion-button icon-start block color="dark" tappable [disabled]="validateForm()" (click)="logIn()">

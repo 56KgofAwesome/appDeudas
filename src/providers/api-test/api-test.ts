@@ -29,6 +29,8 @@ export class ApiTestProvider {
   statusAddNewAccount: any;
   //Variables del form
   disabled: any;
+  //
+  statusAddAutAccount: any;
   constructor(public httpClient: HttpClient,public http: Http) {
 
    }
@@ -86,20 +88,29 @@ export class ApiTestProvider {
 }
   //---------------------------------------------------------------------------------------------------------------------
   //Funcion para crear compra con divisón automática
-  /*createAccount(conceptForm,totalAccountForm,participantsForm){
-    //Convertimos el array de participantes a String
-    //this.participantsString = participantsForm.toString();
+  createAutomaticAccount(addConceptForm,addTotalAccountForm,addParticipantsForm,addDivisionType){
     return new Promise((resolve)=>{
+      //Valida la división automática
+      if(addDivisionType == true){
+        var automatic = 1;
+      }else{
+        var automatic = 0;
+      }
+      var participantsString = addParticipantsForm.toString();
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&m_name='+conceptForm+'&m_pay='+totalAccountForm+'&m_party='+this.participantsString+'&m_userid='+this.userId,this.options)
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+automatic+'&p_party='+participantsString+'&p_payuser='+addTotalAccountForm,this.options)
         .subscribe(data => {
-          //Guardamos el status de la conexión y respuesta con los datos que enviamos
-          var newAccountResponse = data.json();
-          console.log(newAccountResponse.status);
-          resolve(newAccountResponse);
-
+          var respuestaCreateAccount = data.json();
+          this.statusAddAutAccount = respuestaCreateAccount.status;
+          console.log(this.statusAddAutAccount);
+          resolve(respuestaCreateAccount);
         });
-  })
-  }*/
+      })
+  }
+  //----------------------------------------------------------------------------------------------------------------------
+  //Función para crear cuenta maual
+  createManualAccount(){
+    
+  }
 }

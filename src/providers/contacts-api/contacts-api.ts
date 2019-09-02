@@ -12,6 +12,7 @@ export class ContactsApiProvider {
   contactsList: any;
   statusAnswerRequest: any;
   statusRequest: any;
+
   constructor(public httpClient: HttpClient,public http: Http,public aTP: ApiTestProvider ) {
   }
   //Obtener la lista de contactos del usuario
