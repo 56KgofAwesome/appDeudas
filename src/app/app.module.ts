@@ -14,13 +14,15 @@ import { SettingsPage } from '../pages/settings/settings';
 import { ApiTestProvider } from '../providers/api-test/api-test';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule} from '@angular/http';
-import { TabsPage } from '../pages/tabs/tabs';
+//import { TabsPage } from '../pages/tabs/tabs';
 import { AddPage } from '../pages/add/add';
 import { ProfilePage } from '../pages/profile/profile';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
 import { AccountsApiProvider } from '../providers/accounts-api/accounts-api';
-import { NewAccountPage } from '../pages/new-account/new-account';
+//import { NewAccountPage } from '../pages/new-account/new-account';
+import { DetailsPage } from '../pages/details/details';
+import { DetailsApiProvider } from '../providers/details-api/details-api';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { NewAccountPage } from '../pages/new-account/new-account';
     SettingsPage,
     AddPage,
     ProfilePage,
-    ContactsPage
+    ContactsPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { NewAccountPage } from '../pages/new-account/new-account';
     RegisterPage,
     AddPage,
     ProfilePage,
-    ContactsPage
+    ContactsPage,
+    DetailsPage
 
   ],
   providers: [
@@ -59,7 +63,8 @@ import { NewAccountPage } from '../pages/new-account/new-account';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiTestProvider,
     ContactsApiProvider,
-    AccountsApiProvider
+    AccountsApiProvider,
+    DetailsApiProvider
   ]
 })
 export class AppModule {}

@@ -31,6 +31,8 @@ export class ApiTestProvider {
   disabled: any;
   //
   statusAddAutAccount: any;
+  statusManAccount: any;
+
   constructor(public httpClient: HttpClient,public http: Http) {
 
    }
@@ -103,14 +105,27 @@ export class ApiTestProvider {
         .subscribe(data => {
           var respuestaCreateAccount = data.json();
           this.statusAddAutAccount = respuestaCreateAccount.status;
-          console.log(this.statusAddAutAccount);
           resolve(respuestaCreateAccount);
         });
       })
   }
   //----------------------------------------------------------------------------------------------------------------------
   //Función para crear cuenta maual
-  createManualAccount(){
-    
+  createManualAccount(addConceptForm,addTotalAccountForm,addParticipantsForm,addMyPay,quantitysArray,arrSum){
+    return new Promise((resolve)=>{
+      //Arrays to String
+      var quantitysString = quantitysArray.toString();
+      var participantsString = addParticipantsForm.toString();
+      //----------------------------------------------------
+      var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
+      this.options = new RequestOptions({ headers: headers });
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+0+'&p_party='+participantsString+'&p_payuser='+addMyPay+'&p_depositTotal='+arrSum+'&p_monto='+quantitysString,this.options)
+        .subscribe(data => {
+          var respuestaCreateManAccount = data.json();
+          this.statusManAccount = respuestaCreateManAccount.status;
+          resolve(respuestaCreateManAccount);
+        });
+
+    })
   }
 }

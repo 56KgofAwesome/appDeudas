@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, NavParams,ViewController } from 'ionic-angular';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
 import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
-
+import { DetailsPage } from '../details/details';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -12,7 +12,11 @@ export class HomePage {
   successToListAcc: any;
   public allMyBuys: any;
   public allMyDebts: any;
+  public allMyPayments: any;
+
   username: any;
+
+  idDetail: any;
 
   constructor(public navCtrl: NavController, public apiTestProvider: ApiTestProvider,public accountsAPI: AccountsApiProvider,public modal: ModalController,public view: ViewController,public navParams: NavParams) {
     this.username =  this.apiTestProvider.userName;
@@ -26,6 +30,7 @@ export class HomePage {
     ]).then(data=>{
         this.allMyBuys = this.accountsAPI.buysList;
         this.allMyDebts = this.accountsAPI.debtsList;
+        this.allMyPayments = this.accountsAPI.paymentsList;
         /*
         console.log(this.allMyBuys);
         console.log(this.allMyDebts);*/
@@ -36,5 +41,14 @@ export class HomePage {
   addAccountForm(){
     const modalForm = this.modal.create('NewAccountPage');
     modalForm.present();
+  }
+  //---------------------------------------------------------------------------------------
+  viewDetails(detailID,detailName,detailDate,detailTotal){
+    this.navCtrl.push(DetailsPage, {
+      data: detailID,
+      name: detailName,
+      date: detailDate,
+      total: detailTotal
+    })
   }
 }

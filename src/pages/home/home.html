@@ -30,7 +30,7 @@
           <ion-row>
             <ion-list>
               <ion-item *ngFor="let account of allMyBuys">
-                ${{account.p_balancexp}} MXN
+                ${{account.p_payuser}} MXN
               </ion-item>
             </ion-list>
           </ion-row>
@@ -50,7 +50,7 @@
         <ion-row>
           <ion-list>
             <ion-item *ngFor="let account of allMyBuys">
-            <ion-icon name="arrow-forward"></ion-icon>
+            <button ion-button (click)="viewDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)"> -> </button>
             </ion-item>
           </ion-list>
         </ion-row>
@@ -94,11 +94,55 @@
         <ion-row>
           <ion-list>
             <ion-item *ngFor="let account of allMyDebts">
-            <ion-icon name="arrow-forward"></ion-icon>
+            {{<ion-icon name="arrow-forward"></ion-icon>}}
             </ion-item>
           </ion-list>
         </ion-row>
       </ion-col>
     </ion-row>
+    <!--Litado de todos los abonos del usuario-->
+      <ion-row class="tituloAbonos">
+        <h2>Tus Abonos</h2>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong> Concepto </strong>
+            <ion-list>
+              <ion-item *ngFor="let account of allMyPayments">
+                {{account.p_name}}
+              </ion-item>
+            </ion-list>
+        </ion-col>
+        <ion-col>
+          <strong> Total </strong>
+            <ion-row>
+              <ion-list>
+                <ion-item *ngFor="let account of allMyPayments">
+                  ${{account.p_payuser}} MXN
+                </ion-item>
+              </ion-list>
+            </ion-row>
+        </ion-col>
+        <ion-col>
+          <strong> Fecha </strong>
+            <ion-row>
+              <ion-list>
+                <ion-item *ngFor="let account of allMyPayments">
+                  {{ account.p_date.substring(0,10) }}
+                </ion-item>
+              </ion-list>
+            </ion-row>
+        </ion-col>
+        <ion-col>
+            <strong> ... </strong>
+          <ion-row>
+            <ion-list>
+              <ion-item *ngFor="let account of allMyPayments">
+              <ion-icon name="arrow-forward"></ion-icon>
+              </ion-item>
+            </ion-list>
+          </ion-row>
+        </ion-col>
+      </ion-row>
 
 </ion-content>

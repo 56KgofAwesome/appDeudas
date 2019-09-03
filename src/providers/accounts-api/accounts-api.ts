@@ -9,6 +9,7 @@ export class AccountsApiProvider {
   public accountsList: any;
   public buysList: any;
   public debtsList: any;
+  public paymentsList: any;
   public globalUserBalance: any;
   constructor(public httpC: HttpClient, public aTP: ApiTestProvider,public http: Http) {
 
@@ -26,6 +27,7 @@ export class AccountsApiProvider {
             this.accountsList = respuestaAccountList[0];//Todos los moviemientos en los que participo
             this.buysList = respuestaAccountList[0].Compras;//Todas las compras que haya registrado
             this.debtsList = respuestaAccountList[0].Deudas;//Todas las cuentas en las que deba
+            this.paymentsList = respuestaAccountList[0].Abonos;//Todas las cuentas en las que deba
             resolve(respuestaAccountList);
           }else{
             console.log('No debería mostrar nada');
