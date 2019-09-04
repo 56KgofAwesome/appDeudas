@@ -4,24 +4,49 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <h1> Concepto: </h1>
-  <label>{{ detailName }}</label>
-  <h1> Total: </h1>
-  <label> {{ detailTotal }}  </label>
-  <h1> Fecha: </h1>
-  <label> {{ detailDate }} </label>
-  <table>
-    <tr>
-      <th> Participante </th>
-      <th> Monto </th>
-    </tr>
-    <tr>
-      <td>
+  <ion-grid>
+    <h3> Concepto: </h3>
+    <label>{{ detailName }}</label>
+    <h3> Total: </h3>
+    <label> ${{ detailTotal }} MXN  </label>
+    <ion-row>
+      <ion-col>
+        <h3> Fecha: </h3>
+        <label> {{ detailDate.substring(0,10) }} </label>
+      </ion-col>
+      <ion-col>
+        <h3> Hora: </h3>
+        <label> {{ detailDate.substring(12,16) }} </label>
+      </ion-col>
+    </ion-row>
 
-      </td>
-      <td>
-        
-      </td>
-    </tr>
-  </table>
+    <h3>Participante:</h3>
+    <ion-row>
+      <ion-col>
+        <div id="iconParticipant"><ion-icon name="contact"></ion-icon></div>
+      </ion-col>
+      <ion-col>
+        <div>{{myDetailName}}</div>
+      </ion-col>
+      <ion-col>
+        <div>${{myDetailPay}} MXN</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let name of arr;let i = index">
+      <ion-col>
+        <ion-row *ngIf="i!=0">
+          <ion-col>
+            <div id="iconParticipant"><ion-icon name="contact"></ion-icon></div>
+          </ion-col>
+          <ion-col>
+            <div>{{name.d_partyName}}</div>
+          </ion-col>
+          <ion-col>
+            <div>${{name.d_deudap}} MXN</div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

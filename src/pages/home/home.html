@@ -94,7 +94,7 @@
         <ion-row>
           <ion-list>
             <ion-item *ngFor="let account of allMyDebts">
-            {{<ion-icon name="arrow-forward"></ion-icon>}}
+            <button ion-button (click)="viewDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)"> -> </button>
             </ion-item>
           </ion-list>
         </ion-row>
@@ -138,7 +138,7 @@
           <ion-row>
             <ion-list>
               <ion-item *ngFor="let account of allMyPayments">
-              <ion-icon name="arrow-forward"></ion-icon>
+              <button ion-button (click)="viewDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)"> -> </button>
               </ion-item>
             </ion-list>
           </ion-row>

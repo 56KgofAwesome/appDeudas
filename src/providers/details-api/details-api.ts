@@ -22,7 +22,7 @@ export class DetailsApiProvider {
         .subscribe(data => {
           var respuestaDetails = data.json();
           this.detailsData = respuestaDetails.data;
-          resolve(respuestaDetails);
+          resolve(this.detailsData);//Regresa data, no todo el json, duh
         });
       })
   }
