@@ -12,6 +12,7 @@ export class IndividualBalancePage {
   nameContact: any;
 
   individualBalance: any;
+  arr: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public aTP: ApiTestProvider) {
     this.getIndividualBalance();
@@ -24,8 +25,10 @@ export class IndividualBalancePage {
       Promise.all([
         this.aTP.getIndividualBalance(this.idContact)
       ]).then(data=>{
-        console.log(data[0]);
-        this.individualBalance = data[0].data;
+        console.log(data);
+        this.arr = data[0]
+        this.individualBalance =this.arr.data;
+        //this.individualBalance = this.arr[0].data;
       })
   }
 
