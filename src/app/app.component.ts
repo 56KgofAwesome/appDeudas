@@ -3,13 +3,13 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //Provider API
-import { ApiTestProvider } from '../providers/api-test/api-test';
+//import { ApiTestProvider } from '../providers/api-test/api-test';
 //Páginas del login
-import { HomePage } from '../pages/home/home';
+//import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
-import { SettingsPage } from '../pages/settings/settings';
-import { TabsPage } from '../pages/tabs/tabs';
+//import { RegisterPage } from '../pages/register/register';
+//import { SettingsPage } from '../pages/settings/settings';
+//import { TabsPage } from '../pages/tabs/tabs';
 
 
 @Component({

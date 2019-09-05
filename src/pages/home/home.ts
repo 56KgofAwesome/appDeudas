@@ -3,6 +3,7 @@ import { NavController, ModalController, NavParams,ViewController } from 'ionic-
 import { ApiTestProvider } from '../../providers/api-test/api-test';
 import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
 import { DetailsPage } from '../details/details';
+import { ContactsApiProvider } from '../../providers/contacts-api/contacts-api';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,8 +18,10 @@ export class HomePage {
   username: any;
 
   idDetail: any;
+  contactsList: any;
 
-  constructor(public navCtrl: NavController, public apiTestProvider: ApiTestProvider,public accountsAPI: AccountsApiProvider,public modal: ModalController,public view: ViewController,public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public apiTestProvider: ApiTestProvider,public accountsAPI: AccountsApiProvider,public modal: ModalController,public view: ViewController,public navParams: NavParams,public cAP: ContactsApiProvider) {
+    this.contactsList = this.cAP.getContactsList;
     this.username =  this.apiTestProvider.userName;
     this.showAccounts();
   }

@@ -22,6 +22,7 @@ import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
 import { AccountsApiProvider } from '../providers/accounts-api/accounts-api';
 //import { NewAccountPage } from '../pages/new-account/new-account';
 import { DetailsPage } from '../pages/details/details';
+import { IndividualBalancePage } from '../pages/individual-balance/individual-balance';
 import { DetailsApiProvider } from '../providers/details-api/details-api';
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DetailsApiProvider } from '../providers/details-api/details-api';
     AddPage,
     ProfilePage,
     ContactsPage,
-    DetailsPage
+    DetailsPage,
+    IndividualBalancePage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { DetailsApiProvider } from '../providers/details-api/details-api';
     AddPage,
     ProfilePage,
     ContactsPage,
-    DetailsPage
+    DetailsPage,
+    IndividualBalancePage
 
   ],
   providers: [

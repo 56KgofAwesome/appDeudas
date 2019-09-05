@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
 import { ContactsApiProvider } from '../../providers/contacts-api/contacts-api';
-import { Http,RequestOptions,Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
+import { IndividualBalancePage } from '../individual-balance/individual-balance';
 @IonicPage()
 @Component({
   selector: 'page-contacts',
@@ -31,6 +32,14 @@ export class ContactsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public apiTestProvider: ApiTestProvider,public contactsAPI: ContactsApiProvider,public http: Http,public alertCtrl: AlertController) {
     this.showRequests();
     this.showContactsList();
+  }
+  showIndividualBalance(contact){
+    console.log(contact);
+    this.navCtrl.push(IndividualBalancePage,{
+      idContact: contact.c_contactid,
+      nameContact: contact.c_name
+    });
+
   }
   //------------------------------------------------------------------------------------------------------
   //Mostrar las solicitudes pendientes
