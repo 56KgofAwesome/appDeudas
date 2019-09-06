@@ -18,6 +18,7 @@ export class DetailsPage {
   detailsParticipants: any =[];
   arr: any =[];
   myDetailPay: any;
+  myDetailDebt: any;
   myDetailName: any;
   myDetailID: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public detAP: DetailsApiProvider,public aTP: ApiTestProvider) {
@@ -40,6 +41,7 @@ export class DetailsPage {
       this.myDetailPay = this.arr[0].d_pay;
       this.myDetailName = this.arr[0].d_partyName;
       this.myDetailID = this.arr[0].d_origin;
+      this.myDetailDebt = this.arr[0].d_deudap;
 
     })
 

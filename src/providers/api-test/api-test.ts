@@ -42,7 +42,7 @@ export class ApiTestProvider {
     return new Promise((resolve)=>{
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userBalanceShare'+'&d_origin='+this.userId+'&d_destiny='+contactID,this.options)
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userBalanceShare'+'&d_origin='+contactID+'&d_destiny='+this.userId,this.options)
         .subscribe(data => {
             var indBalance = data.json();
             resolve(indBalance);

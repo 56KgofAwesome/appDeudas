@@ -14,8 +14,11 @@ export class IndividualBalancePage {
   individualBalance: any;
   arr: any = [];
 
+  balance: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public aTP: ApiTestProvider) {
     this.getIndividualBalance();
+    this.checkBalance();
   }
   //-------------------------------------------------------------------------------------------
   //Obtener balance con usuario específico
@@ -28,8 +31,12 @@ export class IndividualBalancePage {
         console.log(data);
         this.arr = data[0]
         this.individualBalance =this.arr.data;
-        //this.individualBalance = this.arr[0].data;
       })
   }
-
+  //-------------------------------------------------------------------------------------------
+  //Mostrar el estado de la deuda
+  checkBalance(){
+    this.balance = false;
+    return this.balance;
+  }
 }

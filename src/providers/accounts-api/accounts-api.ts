@@ -50,4 +50,17 @@ export class AccountsApiProvider {
         })
     })
   }
+  //-----------------------------------------------------------------------------------------
+  //Nuevo Abono
+  newPayment(destinataryID,paymentQuantity){
+    return new Promise((resolve)=>{
+        var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept': 'application/json'});
+        this.options = new RequestOptions({headers: headers});
+        this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userDeposit'+'&d_origin='+this.aTP.userId+'&d_destiny='+destinataryID+'&d_pay='+paymentQuantity,this.options)
+        .subscribe(data=>{
+          var respuestaPayment = data.status;
+          resolve(respuestaPayment);
+        })
+    })
+  }
 }

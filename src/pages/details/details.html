@@ -6,47 +6,82 @@
 <ion-content padding>
   <ion-grid>
     <h3> Concepto: </h3>
-    <label>{{ detailName }}</label>
-    <h3> Total: </h3>
-    <label> ${{ detailTotal }} MXN  </label>
+    <div>
+      <label>{{ detailName }}</label>
+    </div>
+    <h3> Total de la cuenta: </h3>
+    <div>
+      <label> ${{ detailTotal }} MXN  </label>
+    </div>
     <ion-row>
-      <ion-col>
+      <ion-col size="6">
         <h3> Fecha: </h3>
-        <label> {{ detailDate.substring(0,10) }} </label>
+        <div>
+          <label> {{ detailDate.substring(0,10) }} </label>
+        </div>
       </ion-col>
-      <ion-col>
+      <ion-col size="6">
         <h3> Hora: </h3>
-        <label> {{ detailDate.substring(12,16) }} </label>
+        <div>
+          <label> {{ detailDate.substring(12,16) }} </label>
+        </div>
       </ion-col>
     </ion-row>
-
-    <h3>Participante:</h3>
-    <ion-row>
-      <ion-col>
-        <div id="iconParticipant"><ion-icon name="contact"></ion-icon></div>
-      </ion-col>
-      <ion-col>
-        <div>{{myDetailName}}</div>
-      </ion-col>
-      <ion-col>
-        <div>${{myDetailPay}} MXN</div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row *ngFor="let name of arr;let i = index">
-      <ion-col>
-        <ion-row *ngIf="i!=0">
-          <ion-col>
-            <div id="iconParticipant"><ion-icon name="contact"></ion-icon></div>
-          </ion-col>
-          <ion-col>
-            <div>{{name.d_partyName}}</div>
-          </ion-col>
-          <ion-col>
-            <div>${{name.d_deudap}} MXN</div>
+    <ion-list>
+      <ion-list-header>
+            <h1> Detalles de Pago </h1>
+      </ion-list-header>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-row>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col size="4">
+                  <div>Nombre:</div>
+                </ion-col>
+                <ion-col size="4">
+                  <div>Cantidad que pagó:</div>
+                </ion-col>
+                <ion-col size="4">
+                  <div>Pendiente por pagarte:</div>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-item-divider>
+      </ion-item-group>
+      <ion-item-group>
+        <ion-row>
+          <ion-col size="12">
+            <ion-row>
+              <ion-col size="4">
+                <div> Tú </div>
+              </ion-col>
+              <ion-col size="4">
+                <div  align-content="center">${{myDetailPay}} MXN</div>
+              </ion-col>
+              <ion-col size="4">
+                <div>${{myDetailDebt}} MXN</div>
+              </ion-col>
+            </ion-row>
           </ion-col>
         </ion-row>
-      </ion-col>
-    </ion-row>
+        <ion-row *ngFor="let name of arr;let i = index" justify-content: center>
+          <ion-col>
+            <ion-row *ngIf="i!=0">
+              <ion-col size="3">
+                <div>{{name.d_partyName}}</div>
+              </ion-col>
+              <ion-col size="3">
+                <div>${{name.d_pay}} MXN</div>
+              </ion-col>
+              <ion-col size="3">
+                <div>${{name.d_deudap}} MXN</div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-item-group>
+  </ion-list>
   </ion-grid>
 </ion-content>

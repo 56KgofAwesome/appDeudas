@@ -54,14 +54,14 @@ export class HomePage {
   //----------------------------------------------------------------------------------------------
   //Formulario de crear cuenta
   addPaymentForm(){
-    const modalForm = this.modal.create('NewAccountPage');
+    const modalForm = this.modal.create('PaymentPage');
     modalForm.present();
   }
 
 
    doRefresh(refresher) {
     console.log('Begin async operation', refresher);
-
+    this.showAccounts();
     setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
@@ -70,5 +70,5 @@ export class HomePage {
 
 
 
-  
+
 }

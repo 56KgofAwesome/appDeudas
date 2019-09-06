@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ContactsApiProvider } from '../../providers/contacts-api/contacts-api';
-//import { ContactsPage } from '../contacts/contacts';
+//import { HomePage } from '../home/home';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
 import { AlertController } from 'ionic-angular';
+import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
 
 @IonicPage()
 @Component({
@@ -39,7 +40,7 @@ export class NewAccountPage {
     arrSum: any;
     totalSumForm: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public view: ViewController,public cAP: ContactsApiProvider,public aTP: ApiTestProvider,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public view: ViewController,public cAP: ContactsApiProvider,public aTP: ApiTestProvider,public alertCtrl: AlertController,public accountsAPI: AccountsApiProvider) {
     this.chooseContacts = this.cAP.contactsList;
     this.automaticDivisionView();
     this.checkAmount();
@@ -93,7 +94,6 @@ export class NewAccountPage {
           this.failedToAddAlert();
         }
       })
-      //return this.addParticipantsForm,this.addConceptForm,this.addConceptForm,this.addDivisionType;
     }else{
     //--------------------------------------------------------------------------------------------------------------------------
     //Agregar cuenta con división manual
@@ -128,32 +128,12 @@ export class NewAccountPage {
             return total + num;
           }
   }
+  //------------------------------------------------------------------------------------------------------------
   //Obtener cantidades
   getQuantity(){
     console.log(this.finalfinal);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  //-----------------------------------------------------------------------------------------------------------
   //Validación de ajuste de cuentas
   checkAmount(){
     if(this.totalAccountForm >= 0){
@@ -166,9 +146,9 @@ export class NewAccountPage {
   //Control de formulario
   automaticDivisionView(){
     if(this.manualDivision==true){
-      return this.hidden=true;
-    }else{
       return this.hidden=false;
+    }else{
+      return this.hidden=true;
     }
   }
   //---------------------------------------------------------------------------------------------------------

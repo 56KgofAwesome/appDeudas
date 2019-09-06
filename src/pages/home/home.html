@@ -18,8 +18,9 @@
 
 <ion-content fullscreen class="ion-padding">
 
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" enabled>
-    <ion-refresher-content 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      enabled
       pullingIcon="arrow-dropdown"
       pullingText="Pull to refresh"
       refreshingSpinner="circles"
@@ -39,7 +40,7 @@
         <strong> Concepto </strong>
       </ion-col>
       <ion-col size="4" align="center">
-        <strong> Total </strong>
+        <strong> Total que te deben </strong>
       </ion-col>
       <ion-col size="4" align="center">
         <strong> Fecha </strong>
@@ -53,7 +54,7 @@
       </ion-col>
       <ion-col size="4" align="center">
         <ion-item>
-          ${{account.p_payuser}} MXN
+          ${{account.p_depositSplit}} MXN
         </ion-item>
       </ion-col>
       <ion-col size="4" align="center">
@@ -71,7 +72,7 @@
         <strong> Concepto </strong>
       </ion-col>
       <ion-col size="4" align="center">
-        <strong> Total </strong>
+        <strong> Total de lo que debes:</strong>
       </ion-col>
       <ion-col size="4" align="center">
         <strong> Fecha </strong>
@@ -85,7 +86,7 @@
       </ion-col>
       <ion-col size="4" align="center">
         <ion-item>
-          ${{account.p_payuser}} MXN
+          ${{account.p_depositSplit}} MXN
         </ion-item>
       </ion-col>
       <ion-col size="4" align="center">
@@ -93,7 +94,7 @@
           {{account.p_date.substring(0,10)}}
         </ion-item>
       </ion-col>
-    </ion-row>      
+    </ion-row>
 <!---------------------................................................................-------------------------->
        <ion-row class="tituloAbonos" size="6" align="center">
       <h2>Tus Abonos</h2>
@@ -125,6 +126,6 @@
           {{account.p_date.substring(0,10)}}
         </ion-item>
       </ion-col>
-    </ion-row> 
+    </ion-row>
   </ion-grid>
 </ion-content>

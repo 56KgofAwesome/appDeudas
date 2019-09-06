@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
-import { ProfilePage } from '../profile/profile';
+//import { ProfilePage } from '../profile/profile';
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the AcccountsFormPage page.
@@ -29,7 +29,6 @@ export class AcccountsFormPage {
   constructor(public alertCtrl: AlertController,public apiTestProvider: ApiTestProvider,navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
     this.selectContacts = this.apiTestProvider.contactsList;
     this.automaticDivisionView();
-    console.log(this.selectContacts);
   }
   check(){
     this.selectContacts.forEach(function(contact){
@@ -39,7 +38,6 @@ export class AcccountsFormPage {
       console.log(this.arrayParticipants);
     //Recorrer el arreglo de Participants form y buscar los id que aparezcan en select Contacts
     //ASi estarán igualados y se almacenara en un tercer arreglo que recorreremos para pintar la division manual
-
   }
   //Muestra la opción de división manual de la cuenta
   automaticDivisionView(){

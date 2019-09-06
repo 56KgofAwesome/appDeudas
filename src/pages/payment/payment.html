@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> Registro de Abono </ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="closeModal()"> Cancelar </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="formAccount">
+    <ion-item>
+      <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
+        Destinatario
+      </ion-label>
+      <ion-select okText="Listo" cancelText="Cancelar" [(ngModel)]="destinataryForm">
+        <ion-option *ngFor="let contact of chooseDestinatary" name="contact" value="{{ contact.c_contactid }}">
+          {{contact.c_name }}
+        </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+        Cantidad del Abono
+      </ion-label>
+      <ion-input [(ngModel)]="totalPaymentForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+    </ion-item>
+    <button ion-button class="buttonAccountForm" (click)="sendFormPayment()">
+      Crear
+    </button>
+  </div>
+</ion-content>
