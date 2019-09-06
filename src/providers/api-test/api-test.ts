@@ -102,18 +102,13 @@ export class ApiTestProvider {
 }
   //---------------------------------------------------------------------------------------------------------------------
   //Funcion para crear compra con divisón automática
-  createAutomaticAccount(addConceptForm,addTotalAccountForm,addParticipantsForm,addDivisionType){
+  createAutomaticAccount(addConceptForm,addTotalAccountForm,addParticipantsForm){
     return new Promise((resolve)=>{
       //Valida la división automática
-      if(addDivisionType == true){
-        var automatic = 1;
-      }else{
-        var automatic = 0;
-      }
       var participantsString = addParticipantsForm.toString();
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+automatic+'&p_party='+participantsString+'&p_payuser='+addTotalAccountForm,this.options)
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+1+'&p_party='+participantsString,this.options)
         .subscribe(data => {
           var respuestaCreateAccount = data.json();
           this.statusAddAutAccount = respuestaCreateAccount.status;

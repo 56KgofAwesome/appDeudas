@@ -33,7 +33,7 @@
     </ion-item>
     <ion-item>
       <ion-label> Pagos en el momento: </ion-label>
-        <ion-toggle [(ngModel)]="manualDivision"></ion-toggle>
+        <ion-toggle [(ngModel)]="manualDivision" ng-checked="false"></ion-toggle>
     </ion-item>
     <!--División manual de los montos de pago-->
     <ion-list [hidden]="automaticDivisionView()">
