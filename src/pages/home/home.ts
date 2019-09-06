@@ -34,9 +34,6 @@ export class HomePage {
         this.allMyBuys = this.accountsAPI.buysList;
         this.allMyDebts = this.accountsAPI.debtsList;
         this.allMyPayments = this.accountsAPI.paymentsList;
-        /*
-        console.log(this.allMyBuys);
-        console.log(this.allMyDebts);*/
     })
   }
   //--------------------------------------------------------------------------------------
@@ -54,4 +51,24 @@ export class HomePage {
       total: detailTotal
     })
   }
+  //----------------------------------------------------------------------------------------------
+  //Formulario de crear cuenta
+  addPaymentForm(){
+    const modalForm = this.modal.create('NewAccountPage');
+    modalForm.present();
+  }
+
+
+   doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
+
+
+  
 }
