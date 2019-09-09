@@ -95,8 +95,6 @@ export class ApiTestProvider {
           //console.log(respuestaContacto.status);//imprime 200 si se pudo agregar con éxito
           resolve(respuestaContacto);
             this.statusAddNew = respuestaContacto.status;
-            console.log(this.statusAddNew);//200
-
         });
   })
 }
@@ -126,7 +124,7 @@ export class ApiTestProvider {
       //----------------------------------------------------
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+0+'&p_party='+participantsString+'&p_payuser='+addMyPay+'&p_depositTotal='+p_depositTotal+'&p_monto='+quantitysString+'p_comment='+addComment,this.options)
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+0+'&p_party='+participantsString+'&p_payuser='+addMyPay+'&p_depositTotal='+p_depositTotal+'&p_monto='+quantitysString+'&p_comment='+addComment,this.options)
         .subscribe(data => {
           var respuestaCreateManAccount = data.json();
           this.statusManAccount = respuestaCreateManAccount.status;

@@ -110,8 +110,14 @@ export class NewAccountPage {
       this.arrSum = $this.quantitysArray.reduce(suma);
       var p_depositTotal = ((splitAmount * this.quantitysArray.length) - this.arrSum);
       this.addMyPay = this.addTotalAccountForm - ((splitAmount * this.quantitysArray.length) - this.arrSum);
-      Promise.all([
-        this.aTP.createManualAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addMyPay,this.quantitysArray,this.comments,p_depositTotal)
+
+
+
+
+
+
+      /*Promise.all([
+        this.aTP.createManualAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addMyPay,this.quantitysArray,p_depositTotal,this.comments)
       ]).then(data=>{
         if(this.aTP.statusManAccount == 200){
           this.successToAddAlert();
@@ -119,7 +125,7 @@ export class NewAccountPage {
         }else{
           this.failedToAddAlert();
         }
-      })
+      })*/
     }
     //Función que suma los valores
     function suma(total,num){
