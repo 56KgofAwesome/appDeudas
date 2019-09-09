@@ -95,8 +95,8 @@ export class IndividualBalancePage {
   //Alerta de usuario incorrecto
   incorrectAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Error',
-      subTitle: 'No puedes abonar mas de lo que debes :( ',
+      title: 'Atención!',
+      subTitle: 'No puedes abonar mas de lo que debes',
       buttons: ['Reintentar']
     });
     alert.present();

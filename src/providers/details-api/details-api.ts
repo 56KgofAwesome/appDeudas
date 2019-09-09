@@ -21,7 +21,8 @@ export class DetailsApiProvider {
       this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userDetail'+'&d_paymentid='+detailID,this.options)
         .subscribe(data => {
           var respuestaDetails = data.json();
-          this.detailsData = respuestaDetails.data;
+          this.detailsData = respuestaDetails;
+          //console.log(this.detailsData[0]);
           resolve(this.detailsData);//Regresa data, no todo el json, duh
         });
       })

@@ -18,6 +18,7 @@ export class NewAccountPage {
     participantsForm: any;
     myPay: any;
     payPart: any = [];
+    comments: any;
     //Formulario
     manualDivision: any;
     hidden: any;
@@ -80,57 +81,9 @@ export class NewAccountPage {
     this.addConceptForm = this.conceptForm;
     this.addTotalAccountForm = parseInt(this.totalAccountForm,10);
     this.addParticipantsForm = this.participantsForm;
-    //this.addMyPay = parseInt(this.myPay,10);
-    /*//------------------------------------------------------------------------------------------------------------------------
-    //Agregar cuenta con divisió automática
-    if(this.addDivisionType == true){
-      Promise.all([
-        //Ejecuta la función de agregar la cuenta
-        this.successAutAccount = this.aTP.createAutomaticAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addDivisionType)
-      ]).then(data=>{
-        if(this.aTP.statusAddAutAccount == 200){
-          this.successToAddAlert();
-          this.closeModal();
-        }else{
-          this.failedToAddAlert();
-        }
-      })
-    }else{
-    //--------------------------------------------------------------------------------------------------------------------------
-    //Agregar cuenta con división manual
-    //Guardamos en un arrar las cantidades individuales para sumarlas
-      var $this = this;
-      this.finalfinal.forEach(function(element){
-        //Arreglo con las cantidades
-        $this.quantitysArray.push(parseInt(element.cantidad,10));
-      })
-        //Suma de cada una de las cantidades
-        this.arrSum = $this.quantitysArray.reduce(suma);
-        this.totalSumForm = (this.arrSum + this.addMyPay);
-        //Validación de cuentas correctas
-        if(this.totalSumForm == this.totalAccountForm){
-            Promise.all([
-              this.succesManAccount = this.aTP.createManualAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addMyPay,this.quantitysArray,this.arrSum)
-            ]).then(data=>{
-                if(this.aTP.statusManAccount == 200){
-                  this.successToAddAlert();
-                  this.closeModal();
-                }else{
-                  this.failedToAddAlert();
-                }
-            })
-        }else{
-          this.failedToAddAlert();
-          this.closeModal();
-        }
-      }
-      //Función que suma los valores
-      function suma(total,num){
-            return total + num;
-          }*/
     if( this.addDivisionType === false){
         Promise.all([
-            this.aTP.createAutomaticAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm)
+            this.aTP.createAutomaticAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.comments)
         ]).then(data=>{
           if(this.aTP.statusAddAutAccount == 200){
             this.successToAddAlert();
@@ -158,7 +111,7 @@ export class NewAccountPage {
       var p_depositTotal = ((splitAmount * this.quantitysArray.length) - this.arrSum);
       this.addMyPay = this.addTotalAccountForm - ((splitAmount * this.quantitysArray.length) - this.arrSum);
       Promise.all([
-        this.aTP.createManualAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addMyPay,this.quantitysArray,p_depositTotal)
+        this.aTP.createManualAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addMyPay,this.quantitysArray,this.comments,p_depositTotal)
       ]).then(data=>{
         if(this.aTP.statusManAccount == 200){
           this.successToAddAlert();
@@ -172,14 +125,6 @@ export class NewAccountPage {
     function suma(total,num){
           return total + num;
         }
-
-
-
-
-
-
-
-
   }
   //------------------------------------------------------------------------------------------------------------
   //Obtener cantidades

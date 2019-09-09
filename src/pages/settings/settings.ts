@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { ApiTestProvider } from '../../providers/api-test/api-test';
 /**
  * Generated class for the SettingsPage page.
  *

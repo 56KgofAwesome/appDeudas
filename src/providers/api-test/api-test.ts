@@ -102,13 +102,13 @@ export class ApiTestProvider {
 }
   //---------------------------------------------------------------------------------------------------------------------
   //Funcion para crear compra con divisón automática
-  createAutomaticAccount(addConceptForm,addTotalAccountForm,addParticipantsForm){
+  createAutomaticAccount(addConceptForm,addTotalAccountForm,addParticipantsForm,addComment){
     return new Promise((resolve)=>{
       //Valida la división automática
       var participantsString = addParticipantsForm.toString();
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+1+'&p_party='+participantsString,this.options)
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+1+'&p_party='+participantsString+'&p_comment='+addComment,this.options)
         .subscribe(data => {
           var respuestaCreateAccount = data.json();
           this.statusAddAutAccount = respuestaCreateAccount.status;
@@ -118,7 +118,7 @@ export class ApiTestProvider {
   }
   //----------------------------------------------------------------------------------------------------------------------
   //Función para crear cuenta maual
-  createManualAccount(addConceptForm,addTotalAccountForm,addParticipantsForm,addMyPay,quantitysArray,p_depositTotal){
+  createManualAccount(addConceptForm,addTotalAccountForm,addParticipantsForm,addMyPay,quantitysArray,p_depositTotal,addComment){
     return new Promise((resolve)=>{
       //Arrays to String
       var quantitysString = quantitysArray.toString();
@@ -126,7 +126,7 @@ export class ApiTestProvider {
       //----------------------------------------------------
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+0+'&p_party='+participantsString+'&p_payuser='+addMyPay+'&p_depositTotal='+p_depositTotal+'&p_monto='+quantitysString,this.options)
+      this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php','m=userPayment'+'&p_userid='+this.userId+'&p_name='+addConceptForm+'&p_pay='+addTotalAccountForm+'&p_type='+0+'&p_party='+participantsString+'&p_payuser='+addMyPay+'&p_depositTotal='+p_depositTotal+'&p_monto='+quantitysString+'p_comment='+addComment,this.options)
         .subscribe(data => {
           var respuestaCreateManAccount = data.json();
           this.statusManAccount = respuestaCreateManAccount.status;

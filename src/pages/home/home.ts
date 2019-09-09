@@ -64,7 +64,6 @@ export class HomePage {
    doRefresh(refresher) {
     this.showAccounts();
     setTimeout(() => {
-      console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
   }

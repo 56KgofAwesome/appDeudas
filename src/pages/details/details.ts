@@ -21,6 +21,8 @@ export class DetailsPage {
   myDetailDebt: any;
   myDetailName: any;
   myDetailID: any;
+  commentDetail: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http,public detAP: DetailsApiProvider,public aTP: ApiTestProvider) {
     this.showDetails();
 
@@ -35,14 +37,16 @@ export class DetailsPage {
     Promise.all([
       this.detAP.getDetails(this.detailID)
     ]).then(data=>{
-      //console.log(data);
-      this.arr = data[0];//Arreglo de arreglo con todos los participantes
-      console.log(this.arr);
-      this.myDetailPay = this.arr[0].d_pay;
-      this.myDetailName = this.arr[0].d_partyName;
-      this.myDetailID = this.arr[0].d_origin;
-      this.myDetailDebt = this.arr[0].d_deudap;
-
+      //Objeto convertido a Array
+      var result = Object.keys(data[0][0]).map(function(key) {
+        return [Number(key), data[0][0][key]];
+      });
+      this.arr = result[0][1];
+        this.myDetailPay = this.arr[0].d_pay;
+        this.myDetailName = this.arr[0].d_partyName;
+        this.myDetailID = this.arr[0].d_origin;
+        this.myDetailDebt = this.arr[0].d_deudap;
+      this.commentDetail = result[1][1][0].p_comment;
     })
 
   }
