@@ -6,12 +6,21 @@
 
 <ion-content padding>
   <ion-grid>
-    <h3>El balance entre tu y {{ nameContact }} </h3>
-
-      <div>
-        <h2> Te debe: </h2>
-      </div>
-
+    <h3>El balance entre tu y {{ nameContact }} es de: </h3>
     <h3>$ {{ individualBalance }} MXN </h3>
+      <ion-item-divider>
+        <ion-label>
+          Abonar:
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
+          $ MXN
+        </ion-label>
+        <ion-input [(ngModel)]="paymentQuantity"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+      </ion-item>
+      <button ion-button class="buttonAccountForm" (click)="payment()" [disabled]=checkBalance()>
+        Abonar
+      </button>
   </ion-grid>
 </ion-content>

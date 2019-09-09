@@ -29,6 +29,13 @@ export class ProfilePage {
         //console.log(this.globalBalance);
     })
   }
-  //--------------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------------------
+  //Pull to refresh
+   doRefresh(refresher) {
+    this.showBalance();
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
+  }
 
 }

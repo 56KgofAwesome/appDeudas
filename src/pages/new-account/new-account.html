@@ -37,12 +37,6 @@
     </ion-item>
     <!--División manual de los montos de pago-->
     <ion-list [hidden]="automaticDivisionView()">
-      <ion-item>
-        <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
-          Mi pago:
-        </ion-label>
-        <ion-input [(ngModel)]="myPay"></ion-input>
-      </ion-item>
       <ion-item *ngFor="let participant of finalfinal">
         <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
           {{ participant.id }}

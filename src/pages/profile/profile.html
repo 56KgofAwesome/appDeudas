@@ -5,6 +5,18 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      enabled
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Cargando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
   <h2> Mi balance </h2>
   <h3> {{ globalBalance }} </h3>
 </ion-content>

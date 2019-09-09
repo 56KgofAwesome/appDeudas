@@ -4,6 +4,7 @@ import { ApiTestProvider } from '../../providers/api-test/api-test';
 import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
 import { DetailsPage } from '../details/details';
 import { ContactsApiProvider } from '../../providers/contacts-api/contacts-api';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -24,6 +25,7 @@ export class HomePage {
     this.contactsList = this.cAP.getContactsList;
     this.username =  this.apiTestProvider.userName;
     this.showAccounts();
+    this.cAP.getContactsList();
   }
   //-------------------------------------------------------------------------------------
   //Muestra todas las cuentas
@@ -57,10 +59,9 @@ export class HomePage {
     const modalForm = this.modal.create('PaymentPage');
     modalForm.present();
   }
-
-
+  //-----------------------------------------------------------------------------------------------
+  //Pull to refresh
    doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
     this.showAccounts();
     setTimeout(() => {
       console.log('Async operation has ended');

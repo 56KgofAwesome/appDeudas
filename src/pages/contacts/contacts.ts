@@ -33,13 +33,14 @@ export class ContactsPage {
     this.showRequests();
     this.showContactsList();
   }
+  //----------------------------------------------------------------------------------------------------
+  //Mostrar el balance con X usuario
   showIndividualBalance(contact){
     console.log(contact);
     this.navCtrl.push(IndividualBalancePage,{
       idContact: contact.c_contactid,
       nameContact: contact.c_name
     });
-
   }
   //------------------------------------------------------------------------------------------------------
   //Mostrar las solicitudes pendientes

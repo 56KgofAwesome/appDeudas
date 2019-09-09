@@ -15,9 +15,11 @@ export class PaymentPage {
   conceptPaymentForm: any;
   totalPaymentForm: any;
   destinataryForm: any;
+  indBalance: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public cAP: ContactsApiProvider,public accountsAP: AccountsApiProvider,public alertCtrl: AlertController,public view: ViewController) {
       this.chooseDestinatary = this.cAP.contactsList;
+      this.indBalance = this.navParams.get('indBalance');
   }
   //------------------------------------------------------------------------------------------------------------------
   //Registrar nuevo abono

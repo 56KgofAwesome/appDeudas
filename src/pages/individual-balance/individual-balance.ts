@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController,ViewController } from 'ionic-angular';
 import { ApiTestProvider } from '../../providers/api-test/api-test';
+import { AlertController } from 'ionic-angular';
+import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
 
 @IonicPage()
 @Component({
@@ -15,10 +17,34 @@ export class IndividualBalancePage {
   arr: any = [];
 
   balance: any;
+  paymentQuantity: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public aTP: ApiTestProvider) {
-    this.getIndividualBalance();
+  disabled: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public aTP: ApiTestProvider,public modal: ModalController,public alertCtrl: AlertController,public accountsAP: AccountsApiProvider,public view: ViewController) {
     this.checkBalance();
+    this.getIndividualBalance();
+  }
+  //--------------------------------------------------------------------------------------------
+  //Botón para abonar
+  payment(){
+    this.idContact = this.navParams.get('idContact');
+    this.individualBalance = this.arr.data;
+    var newBalance = parseInt(this.paymentQuantity) + this.individualBalance;
+    if(newBalance > 0){
+      this.incorrectAlert();
+    }else{
+      Promise.all([
+        this.accountsAP.newPayment(this.idContact,this.paymentQuantity)
+      ]).then(data=>{
+          if(data[0] == 200){
+            this.successToAddPaymentAlert();
+            this.closeModal();
+          }else{
+            this.failedToAddPaymentAlert();
+          }
+      })
+    }
   }
   //-------------------------------------------------------------------------------------------
   //Obtener balance con usuario específico
@@ -36,7 +62,43 @@ export class IndividualBalancePage {
   //-------------------------------------------------------------------------------------------
   //Mostrar el estado de la deuda
   checkBalance(){
-    this.balance = false;
-    return this.balance;
+    if(this.individualBalance >= 0){
+      return this.disabled = true;
+    }else{
+      return this.disabled = false;
+    }
+  }
+  //------------------------------------------------------------------------------------------------------------------
+  //Alerta de nueva compra exitosa
+  successToAddPaymentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Éxito',
+      subTitle: 'Abono registrado con éxito',
+    });
+    alert.present();
+  }
+  //----------------------------------------------------------------------------------------------------------------------
+  //Alerta de fracaso al añadir cuenta exitosa
+  failedToAddPaymentAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Error :( ',
+      subTitle: 'No se pudo registrar el abono',
+    });
+    alert.present();
+  }
+  //-------------------------------------------------------------------------------------------------------------------
+  //Funcion para cerrar el modal
+  closeModal(){
+    this.view.dismiss();
+  }
+  //----------------------------------------------------------------------------------------------------------
+  //Alerta de usuario incorrecto
+  incorrectAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Error',
+      subTitle: 'No puedes abonar mas de lo que debes :( ',
+      buttons: ['Reintentar']
+    });
+    alert.present();
   }
 }

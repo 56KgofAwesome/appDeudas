@@ -80,7 +80,7 @@ export class NewAccountPage {
     this.addConceptForm = this.conceptForm;
     this.addTotalAccountForm = parseInt(this.totalAccountForm,10);
     this.addParticipantsForm = this.participantsForm;
-    this.addMyPay = parseInt(this.myPay,10);
+    //this.addMyPay = parseInt(this.myPay,10);
     /*//------------------------------------------------------------------------------------------------------------------------
     //Agregar cuenta con divisió automática
     if(this.addDivisionType == true){
@@ -139,28 +139,39 @@ export class NewAccountPage {
             this.failedToAddAlert();
           }
         })
-      //var splitAmount = this.addTotalAccountForm / parseInt(this.addParticipantsForm.length + 1);
-        /*this.finalfinal.forEach(function(i){
-          i.cantidad = splitAmount;
-        })
-        console.log(this.finalfinal);*/
     }else{
-      console.log('aqui va la de pagos');
-      console.log(this.addConceptForm );
-      console.log(this.addTotalAccountForm);
-      console.log(this.addParticipantsForm);
-      console.log(this.addDivisionType);
-      console.log(this.addMyPay);
-
+      //Obtenemos la cantidad que paga cada uno para saber al final cuanto va a deber
       var splitAmount = this.addTotalAccountForm / parseInt(this.addParticipantsForm.length + 1);
-
+      //Guardamos cuanto paga cada usuario participante
       this.finalfinal.forEach(function(i){
-        i.cantidad = splitAmount;
+        var deuda = (splitAmount - i.cantidad)
+        i.cantidad = deuda;
       })
-      console.log(this.finalfinal);
-
-
+      //Guardamos en un arreglo solamente las cantidades restantes de deuda
+      var $this = this;
+      this.finalfinal.forEach(function(element){
+        //Arreglo con las cantidades
+        $this.quantitysArray.push(parseInt(element.cantidad,10));
+      })
+      //Obtenemos la suma de las deudas para obtener cuanto pagaré yo
+      this.arrSum = $this.quantitysArray.reduce(suma);
+      var p_depositTotal = ((splitAmount * this.quantitysArray.length) - this.arrSum);
+      this.addMyPay = this.addTotalAccountForm - ((splitAmount * this.quantitysArray.length) - this.arrSum);
+      Promise.all([
+        this.aTP.createManualAccount(this.addConceptForm,this.addTotalAccountForm,this.addParticipantsForm,this.addMyPay,this.quantitysArray,p_depositTotal)
+      ]).then(data=>{
+        if(this.aTP.statusManAccount == 200){
+          this.successToAddAlert();
+          this.closeModal();
+        }else{
+          this.failedToAddAlert();
+        }
+      })
     }
+    //Función que suma los valores
+    function suma(total,num){
+          return total + num;
+        }
 
 
 
