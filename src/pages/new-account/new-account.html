@@ -13,13 +13,13 @@
       <ion-label floating><ion-icon name="book" item-start class="text-primary"></ion-icon>
       Concepto
       </ion-label>
-      <ion-input [(ngModel)]="conceptForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+      <ion-input [(ngModel)]="conceptForm"  [ngModelOptions]="{standalone: true}" type="text" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
         Total de la compra
       </ion-label>
-      <ion-input [(ngModel)]="totalAccountForm"  [ngModelOptions]="{standalone: true}" type="text"></ion-input>
+      <ion-input [(ngModel)]="totalAccountForm"  [ngModelOptions]="{standalone: true}" type="text" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label><ion-icon name="contacts" item-start class="text-primary"></ion-icon>
@@ -41,12 +41,12 @@
         <ion-label floating><ion-icon name="cash" item-start class="text-primary"></ion-icon>
           {{ participant.id }}
         </ion-label>
-        <ion-input [(ngModel)]="participant.cantidad" (ionChange)="llenado(participant.id,participant.cantidad)"> </ion-input>
+        <ion-input [(ngModel)]="participant.cantidad" (ionChange)="llenado(participant.id,participant.cantidad)" type="number" required clear-on-edit="true"> </ion-input>
       </ion-item>
     </ion-list>
     <ion-item>
         <ion-label position="floating"> Comentarios: </ion-label>
-        <ion-textarea autoGrow="true" [(ngModel)]="comments">
+        <ion-textarea autoGrow="true" [(ngModel)]="comments" required>
 
         </ion-textarea>
     </ion-item>

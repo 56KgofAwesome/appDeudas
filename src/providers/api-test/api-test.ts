@@ -53,28 +53,19 @@ export class ApiTestProvider {
   validateUser(body){
     //La función validateUser espera una promesa
     return new Promise((resolve)=>{
-      //Construimos los encabezados de la comunicación
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
-      //Enviamos la petición
-      //post(url,body,headers)
       this.http.post('http://www.immosystem.com.mx/immo_practicas/immoApp.php',body,this.options)
         .subscribe(data => {
-          //Recibimos los datos en formato
           var respuestaLogin = data.json();
-          //la función resolve devuelve a la variable 'respuestaLogin'
           this.statusLogin = respuestaLogin.status;
             if(this.statusLogin == 100){
               console.log('Respuesta de Login: '+this.statusLogin);
               resolve(respuestaLogin);
             }else{
-              //console.log('Respuesta de Login: '+this.statusLogin);
               this.userId = respuestaLogin.data.userid;
-              //console.log('User id: '+this.userId);
               this.userName = respuestaLogin.data.username;
-              //console.log('Username: '+this.userName);
               this.userEmail = respuestaLogin.data.email;
-              //console.log('Email: '+this.userEmail);
               resolve(respuestaLogin);
             }
         });
@@ -121,6 +112,7 @@ export class ApiTestProvider {
       //Arrays to String
       var quantitysString = quantitysArray.toString();
       var participantsString = addParticipantsForm.toString();
+      console.log(quantitysString);
       //----------------------------------------------------
       var headers = new Headers({"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",'Accept':'application/json'});
       this.options = new RequestOptions({ headers: headers });
@@ -130,7 +122,6 @@ export class ApiTestProvider {
           this.statusManAccount = respuestaCreateManAccount.status;
           resolve(respuestaCreateManAccount);
         });
-
     })
   }
 }

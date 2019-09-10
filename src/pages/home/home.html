@@ -24,7 +24,7 @@
   </ion-refresher>
 
 
-  <!--Listado de todas las compras en las que participa el usuario-->
+  <!-----------------------------------------------------Listado de todas las compras en las que participa el usuario-->
   <ion-grid>
     <ion-row class="tituloCompras" size="6" align="center">
       <h2>Tus compras</h2>
@@ -49,7 +49,7 @@
       </ion-col>
       <ion-col size="4" align="center">
         <ion-item>
-          ${{account.p_depositSplit}} MXN
+          ${{account.p_payment}} MXN
         </ion-item>
       </ion-col>
       <ion-col size="4" align="center">
@@ -73,7 +73,7 @@
         <strong> Fecha </strong>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let account of allMyDebts" (click)="viewDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)">
+    <ion-row *ngFor="let account of allMyDebts" (click)="viewDebtDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)">
       <ion-col size="4" align="center">
         <ion-item>
           {{account.p_name}}
@@ -96,7 +96,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="4" align="center">
-        <strong> Concepto </strong>
+        <strong> Destinatario </strong>
       </ion-col>
       <ion-col size="4" align="center">
         <strong> Total </strong>
@@ -105,7 +105,7 @@
         <strong> Fecha </strong>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let account of allMyPayments" (click)="viewDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)">
+    <ion-row *ngFor="let account of allMyPayments" (click)="viewPaymentDetails(account.p_paymentid,account.p_name,account.p_date,account.p_pay)">
       <ion-col size="4" align="center">
         <ion-item>
           {{account.p_name}}
@@ -113,7 +113,7 @@
       </ion-col>
       <ion-col size="4" align="center">
         <ion-item>
-          ${{account.p_payuser}} MXN
+          ${{account.p_payment}} MXN
         </ion-item>
       </ion-col>
       <ion-col size="4" align="center">

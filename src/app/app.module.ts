@@ -9,13 +9,13 @@ import { HomePage } from '../pages/home/home';
 //Páginas del login
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { SettingsPage } from '../pages/settings/settings';
+import { DebtDetailsPage } from '../pages/debt-details/debt-details';
+import { PaymentDetailsPage } from '../pages/payment-details/payment-details';
 //Import del Provider de la API
 import { ApiTestProvider } from '../providers/api-test/api-test';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule} from '@angular/http';
 //import { TabsPage } from '../pages/tabs/tabs';
-import { AddPage } from '../pages/add/add';
 import { ProfilePage } from '../pages/profile/profile';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsApiProvider } from '../providers/contacts-api/contacts-api';
@@ -32,12 +32,12 @@ import { DetailsApiProvider } from '../providers/details-api/details-api';
     //Agregamos Login en Declaraions
     LoginPage,
     RegisterPage,
-    SettingsPage,
-    AddPage,
+    DebtDetailsPage,
     ProfilePage,
     ContactsPage,
     DetailsPage,
-    IndividualBalancePage
+    IndividualBalancePage,
+    PaymentDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -51,13 +51,13 @@ import { DetailsApiProvider } from '../providers/details-api/details-api';
     HomePage,
     //Agregamos el Login en entryCoponents
     LoginPage,
-    SettingsPage,
     RegisterPage,
-    AddPage,
+    DebtDetailsPage,
     ProfilePage,
     ContactsPage,
     DetailsPage,
-    IndividualBalancePage
+    IndividualBalancePage,
+    PaymentDetailsPage
 
   ],
   providers: [

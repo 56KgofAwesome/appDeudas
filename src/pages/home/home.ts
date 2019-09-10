@@ -3,6 +3,8 @@ import { NavController, ModalController, NavParams,ViewController } from 'ionic-
 import { ApiTestProvider } from '../../providers/api-test/api-test';
 import { AccountsApiProvider } from '../../providers/accounts-api/accounts-api';
 import { DetailsPage } from '../details/details';
+import { DebtDetailsPage } from '../debt-details/debt-details';
+import { PaymentDetailsPage } from '../payment-details/payment-details';
 import { ContactsApiProvider } from '../../providers/contacts-api/contacts-api';
 
 @Component({
@@ -47,6 +49,24 @@ export class HomePage {
   //---------------------------------------------------------------------------------------
   viewDetails(detailID,detailName,detailDate,detailTotal){
     this.navCtrl.push(DetailsPage, {
+      data: detailID,
+      name: detailName,
+      date: detailDate,
+      total: detailTotal
+    })
+  }
+  //---------------------------------------------------------------------------------------
+  viewDebtDetails(detailID,detailName,detailDate,detailTotal){
+    this.navCtrl.push(DebtDetailsPage, {
+      data: detailID,
+      name: detailName,
+      date: detailDate,
+      total: detailTotal
+    })
+  }
+  //---------------------------------------------------------------------------------------
+  viewPaymentDetails(detailID,detailName,detailDate,detailTotal){
+    this.navCtrl.push(PaymentDetailsPage, {
       data: detailID,
       name: detailName,
       date: detailDate,
